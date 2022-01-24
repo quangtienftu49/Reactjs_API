@@ -4,10 +4,15 @@
 
   .login-container {
     background-color:white;
-    width: 350px;
-    height: 100%;
-    margin: 0 auto;
+    width: 300px;
     border-radius: 25px;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 450px;
     
     .login-content {
       padding: 15px;
@@ -21,6 +26,17 @@
 
       .login-input{
         margin: 8px 0;
+
+        .custom-input-password {
+          position: relative;
+
+          i {
+            position: absolute;
+            right: 5px;
+            top: 10px;
+            cursor: pointer
+          }
+        }
       }
 
       .btn-login{
@@ -58,6 +74,7 @@
           justify-content: center;
           color: white;
           font-size: 30px;
+          cursor: pointer
         }
 
         .facebook{
@@ -70,6 +87,7 @@
           justify-content: center;
           color: white;
           font-size: 30px;
+          cursor: pointer
         }
       }
     }
