@@ -45,8 +45,7 @@ class Login extends Component {
       }
 
       if(data && data.errCode === 0){
-        userLoginSuccess(data.user)
-        console.log('login success')
+        this.props.userLoginSuccess(data.user)
       }
 
     } catch (error) {
@@ -57,7 +56,6 @@ class Login extends Component {
           })
         }
       }
-      // console.log('Hello Bugs: ', error.response);
     }
   }
 
@@ -137,9 +135,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     navigate: (path) => dispatch(push(path)),
-    // adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
     // userLoginFail: () => dispatch(actions.userLoginFail()),
-    userLoginSuccess: (userInfo)=> dispatch(actions.userLoginSuccess(userInfo))
+    userLoginSuccess: (userInfor)=> dispatch(actions.userLoginSuccess(userInfor))
   };
 };
 
