@@ -3,12 +3,14 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 import { getAllUsers } from "../../services/userService";
+import ModalUser from "./ModalUser";
 
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrUsers: [],
+      isOpenModalUser: false,
     };
   }
 
@@ -21,21 +23,48 @@ class UserManage extends Component {
     }
   }
 
+  handleAddNewUser = () => {
+    this.setState({
+      isOpenModalUser: true,
+    });
+    // alert("click me");
+  };
+
+  toggleUserModal = () => {
+    this.setState({
+      isOpenModalUser: !this.state.isOpenModalUser,
+    });
+  };
+
   //   Life cycle
   //   Run component:
   //   1. Run construct -> init state
   //   2. Did mount (set state)
   //   3. Render
 
-  // Program runs render first.
-  // Whenever setState got fired, render runs again
+  // Program runs render first
+  // Whenever setState got fired, (re-)render runs again
 
   render() {
-    console.log("check render:", this.state);
+    // console.log("check render:", this.state);
     let arrUsers = this.state.arrUsers;
     return (
       <div className="user-container">
+        <ModalUser
+          isOpen={this.state.isOpenModalUser}
+          toggleFromParent={this.toggleUserModal}
+          test={"abc"}
+        />
         <div className="title text-center">Manage users with ReactJs</div>
+        <div className="mx-1">
+          <button
+            className="btn btn-primary px-3"
+            onClick={() => this.handleAddNewUser()}
+          >
+            <i className="fas fa-plus px-1"></i>
+            Add new users
+          </button>
+        </div>
         <div className="users-table mt-4 mx-1">
           <table id="customers">
             <tr>
@@ -56,10 +85,10 @@ class UserManage extends Component {
                     <td>{item.address}</td>
                     <td className="w-25">
                       <button className="btn-edit">
-                        <i class="fas fa-pencil-alt"></i>
+                        <i className="fas fa-pencil-alt"></i>
                       </button>
                       <button className="btn-delete">
-                        <i class="fas fa-trash-alt"></i>
+                        <i className="fas fa-trash-alt"></i>
                       </button>
                     </td>
                   </tr>
