@@ -1,4 +1,26 @@
 {
+    "home-header": {
+        "specialty": "Medical specialty",
+        "search-doctor": "Find a doctor by specialty",
+        "hospital": "Hospital",
+        "select-hospital": "Select a hospital",
+        "doctor": "Doctor",
+        "select-doctor": "Select the best doctor",
+        "medical-package": "Checkup package",
+        "check-health": "General health check",
+        "support": "Support"
+     },
+     "banner":{
+         "title1": "MEDICAL PLATFORM",
+         "title2": "THOROUGH HEALTHCARE",
+         "find-specialty": "Search for a medical specialty",
+         "specialized-checkup": "Specialized checkup",
+         "remote-checkup": "Remote checkup",
+         "general-checkup": "General checkup",
+         "medical-test": "Medical test",
+         "mental-health": "Mental health",
+         "dental-checkup": "Dental checkup"
+     },
     "common": {
         "add": "Add",
         "edit": "Edit",
