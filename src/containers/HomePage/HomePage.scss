@@ -1,7 +1,7 @@
 //reset slick slider css
 .slick-prev {
   left: -10px !important;
-  z-index: 1000 !important;
+  z-index: 9 !important;
   height: 48px !important;
   width: 44px !important;
   background: #fff !important;
@@ -41,6 +41,37 @@
 
   &.section-doctor {
     background: #f5f5f5;
+  }
+
+  &.section-about {
+    height: 500px !important;
+    margin: 0 100px;
+    border-top: 5px solid #f5f5f5;
+
+    .section-about-header {
+      padding: 10px 10px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .section-about-content {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+
+      .content-left {
+        width: 50%;
+      }
+
+      .content-right {
+        width: 50%;
+        padding-top: 15px;
+
+        p {
+          text-align: justify;
+        }
+      }
+    }
   }
 
   .section-body {
@@ -134,5 +165,14 @@
   .section-customized {
     border: 2px solid #e7e7e7;
     margin: 0 5px;
+  }
+}
+
+.home-footer {
+  text-align: center;
+  padding-top: 5px;
+
+  a {
+    text-decoration: unset;
   }
 }
