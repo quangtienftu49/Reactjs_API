@@ -17,10 +17,8 @@ class HomeHeader extends Component {
   };
 
   render() {
-    console.log("check props: ", this.props);
     //language retrieved from redux not from parent
     let language = this.props.language;
-    console.log(language);
     return (
       <>
         <div className="home-header-container">

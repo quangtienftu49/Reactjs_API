@@ -10,12 +10,15 @@
   position: relative;
 
   .languages {
-    cursor: pointer;
+    .welcome {
+      margin-right: 10px;
+    }
 
     .language-en {
       margin-right: 15px;
       margin-left: 10px;
       opacity: 0.5;
+      cursor: pointer;
 
       &.active {
         opacity: 1;
@@ -26,6 +29,7 @@
 
     .language-vi {
       opacity: 0.5;
+      cursor: pointer;
 
       &.active {
         opacity: 1;
