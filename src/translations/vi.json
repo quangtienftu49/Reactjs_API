@@ -37,6 +37,21 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
         }
+    },
+    "manage-user": {
+        "reduxTitle": "React Redux mẫu khai thông tin người dùng",
+        "add": "Thêm mới người dùng",
+        "password": "Mật khẩu",
+        "firstName": "Tên",
+        "lastName": "Họ",
+        "phoneNumber": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "choose": "Chọn",
+        "title": "Chức danh",
+        "roleId": "Vai trò",
+        "image": "Ảnh",
+        "save": "Lưu thông tin"
     }
    
 }

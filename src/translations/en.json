@@ -36,5 +36,20 @@
             "handbook": "Handbooks",
             "manage-handbook": "Manage handbooks"
         }
-    }  
+    } ,
+    "manage-user": {
+        "reduxTitle": "React Redux sample",
+        "add": "Add a new user",
+        "password": "Password",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "phoneNumber": "Phone number",
+        "address": "Address",
+        "gender": "Gender",
+        "choose": "Choose",
+        "title": "Title",
+        "roleId": "Role ID",
+        "image": "Image",
+        "save": "Save"
+    } 
 }
