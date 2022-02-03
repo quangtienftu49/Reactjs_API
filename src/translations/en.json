@@ -50,6 +50,7 @@
         "title": "Title",
         "roleId": "Role ID",
         "image": "Avatar",
-        "save": "Save"
+        "save": "Save",
+        "upload": "Upload"
     } 
 }

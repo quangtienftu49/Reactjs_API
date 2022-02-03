@@ -1,0 +1,22 @@
+//css for preview image
+.preview-img-container {
+  .label-upload {
+    padding: 5px;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 5px;
+
+    &:hover {
+      background: orange;
+    }
+  }
+
+  .preview-image {
+    height: 50px;
+    width: 100%;
+    border: 1px solid #ddd;
+    background: center center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  }
+}
