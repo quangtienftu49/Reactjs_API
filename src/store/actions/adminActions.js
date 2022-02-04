@@ -4,6 +4,7 @@ import {
   createNewUserService,
   getAllUsers,
   deleteUserService,
+  editUserService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -96,7 +97,7 @@ export const createNewUser = (data) => {
       let res = await createNewUserService(data);
       // console.log("check create user redux", res);
       if (res && res.errCode === 0) {
-        toast.success("Successfully create a new user!");
+        toast.success("Create a new user successfully!");
         dispatch(saveUserSuccess());
         dispatch(fetchAllUsersStart());
       } else {
@@ -149,7 +150,7 @@ export const deleteAUser = (userId) => {
     try {
       let res = await deleteUserService(userId);
       if (res && res.errCode === 0) {
-        toast.success("Successfully delete the user!");
+        toast.success("Delete the user successfully!");
         dispatch(deleteUserSuccess());
         dispatch(fetchAllUsersStart());
       } else {
@@ -170,4 +171,32 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailed = () => ({
   type: actionTypes.DELETE_USER_FAILED,
+});
+
+export const editAUser = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await editUserService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Update the user successfully!");
+        dispatch(editUserSuccess());
+        dispatch(fetchAllUsersStart());
+      } else {
+        toast.error("Cannot edit the user!");
+        dispatch(editUserFailed());
+      }
+    } catch (e) {
+      toast.error("Cannot edit the user!");
+      dispatch(editUserFailed());
+      console.log("editUserFailed error", e);
+    }
+  };
+};
+
+export const editUserSuccess = () => ({
+  type: actionTypes.EDIT_USER_SUCCESS,
+});
+
+export const editUserFailed = () => ({
+  type: actionTypes.EDIT_USER_FAILED,
 });

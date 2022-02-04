@@ -51,8 +51,9 @@
         "title": "Chức danh",
         "roleId": "Vai trò",
         "image": "Ảnh đại diện",
-        "save": "Lưu thông tin",
-        "upload": "Tải ảnh"
+        "save": "Lưu người dùng",
+        "upload": "Tải ảnh",
+        "edit": "Lưu thay đổi"
     }
    
 }
