@@ -83,6 +83,9 @@ class UserRedux extends Component {
     }
 
     if (prevProps.listUsers !== this.props.listUsers) {
+      let arrGenders = this.props.genderRedux;
+      let arrTitles = this.props.titleRedux;
+      let arrRoles = this.props.roleRedux;
       this.setState({
         email: "",
         password: "",
@@ -90,9 +93,9 @@ class UserRedux extends Component {
         lastName: "",
         phoneNumber: "",
         address: "",
-        gender: "",
-        title: "",
-        role: "",
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
+        title: arrTitles && arrTitles.length > 0 ? arrTitles[0].key : "",
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
         previewImgUrl: "",
@@ -126,6 +129,7 @@ class UserRedux extends Component {
   };
 
   handleSaveUser = () => {
+    console.log("check state", this.state);
     let isValid = this.checkValidateInput();
     if (!isValid) return;
 
@@ -192,9 +196,14 @@ class UserRedux extends Component {
     // NOT mutate state directly but through copyState =>>> good practice
     copyState[id] = e.target.value;
 
-    this.setState({
-      ...copyState,
-    });
+    this.setState(
+      {
+        ...copyState,
+      },
+      () => {
+        console.log("checck input onchange", this.state);
+      }
+    );
   };
 
   handleEditUserFromParent = (user) => {
