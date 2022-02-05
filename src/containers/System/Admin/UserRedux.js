@@ -62,7 +62,7 @@ class UserRedux extends Component {
       let arrGenders = this.props.genderRedux;
       this.setState({
         genderArr: arrGenders,
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
       });
     }
 
@@ -70,7 +70,7 @@ class UserRedux extends Component {
       let arrTitles = this.props.titleRedux;
       this.setState({
         titleArr: arrTitles,
-        title: arrTitles && arrTitles.length > 0 ? arrTitles[0].key : "",
+        title: arrTitles && arrTitles.length > 0 ? arrTitles[0].keyMap : "",
       });
     }
 
@@ -78,7 +78,7 @@ class UserRedux extends Component {
       let arrRoles = this.props.roleRedux;
       this.setState({
         roleArr: arrRoles,
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
       });
     }
 
@@ -93,9 +93,9 @@ class UserRedux extends Component {
         lastName: "",
         phoneNumber: "",
         address: "",
-        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
-        title: arrTitles && arrTitles.length > 0 ? arrTitles[0].key : "",
-        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
+        title: arrTitles && arrTitles.length > 0 ? arrTitles[0].keyMap : "",
+        role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
         previewImgUrl: "",
@@ -129,7 +129,7 @@ class UserRedux extends Component {
   };
 
   handleSaveUser = () => {
-    console.log("check state", this.state);
+    // console.log("check state", this.state);
     let isValid = this.checkValidateInput();
     if (!isValid) return;
 
@@ -149,7 +149,7 @@ class UserRedux extends Component {
         positionId: this.state.title,
         avatar: this.state.avatar,
       });
-    } else {
+    } else if (action === CRUD_ACTIONS.EDIT) {
       //fire redux edit user
       this.props.editAUserRedux({
         id: this.state.userEditId,
@@ -199,10 +199,10 @@ class UserRedux extends Component {
     this.setState(
       {
         ...copyState,
-      },
-      () => {
-        console.log("checck input onchange", this.state);
       }
+      // () => {
+      //   console.log("checck input onchange", this.state);
+      // }
     );
   };
 
@@ -366,7 +366,7 @@ class UserRedux extends Component {
                     genders.length > 0 &&
                     genders.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -390,7 +390,7 @@ class UserRedux extends Component {
                     titles.length > 0 &&
                     titles.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
@@ -414,7 +414,7 @@ class UserRedux extends Component {
                     roles.length > 0 &&
                     roles.map((item, index) => {
                       return (
-                        <option key={index} value={item.key}>
+                        <option key={index} value={item.keyMap}>
                           {language === LANGUAGES.VI
                             ? item.valueVi
                             : item.valueEn}
