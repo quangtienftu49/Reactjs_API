@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
 import Lightbox from "react-image-lightbox";
@@ -95,19 +95,23 @@ class UserRedux extends Component {
         role: "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
+        previewImgUrl: "",
       });
     }
   }
 
-  handleOnChangeImage = (e) => {
+  handleOnChangeImage = async (e) => {
     let data = e.target.files;
     let file = data[0];
     //create URL to preview image
     if (file) {
+      //convert file image to base64
+      let base64 = await CommonUtils.getBase64(file);
+      // console.log("check file base64", base64);
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgUrl: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
   };
@@ -139,6 +143,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.title,
+        avatar: this.state.avatar,
       });
     } else {
       //fire redux edit user
@@ -153,7 +158,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.title,
-        // avatar: this.state.avatar,
+        avatar: this.state.avatar,
       });
     }
 
@@ -193,7 +198,14 @@ class UserRedux extends Component {
   };
 
   handleEditUserFromParent = (user) => {
-    console.log("check edit user from parent", user);
+    // console.log("check edit user from parent", user);
+
+    //parse buffer image to base64
+    let imageBase64 = "";
+    if (user.image) {
+      imageBase64 = new Buffer(user.image, "base64").toString("binary");
+    }
+
     this.setState({
       email: user.email,
       password: "hardcode",
@@ -204,9 +216,10 @@ class UserRedux extends Component {
       gender: user.gender,
       title: user.positionId,
       role: user.roleId,
-      avatar: user.image,
+      avatar: "",
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id,
+      previewImgUrl: imageBase64,
     });
   };
 
