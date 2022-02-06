@@ -53,5 +53,9 @@
         "save": "Save user",
         "upload": "Upload",
         "edit": "Save changes"
-    } 
+    },
+    "homepage":{
+        "outstanding-doctor": "Outstanding doctors",
+        "see-more": "See more"
+    }
 }

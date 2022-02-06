@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import Slider from "react-slick";
 import { LANGUAGES } from "../../../utils";
+import { FormattedDate, FormattedMessage } from "react-intl";
 
 class Doctor extends Component {
   constructor(props) {
@@ -35,8 +36,12 @@ class Doctor extends Component {
       <div className="section-share section-doctor">
         <div className="section-container">
           <div className="section-header">
-            <span className="section-title">Bác sỹ nổi bật</span>
-            <button className="section-btn">Xem thêm</button>
+            <span className="section-title">
+              <FormattedMessage id="homepage.outstanding-doctor" />
+            </span>
+            <button className="section-btn">
+              <FormattedMessage id="homepage.see-more" />
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
