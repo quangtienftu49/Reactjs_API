@@ -29,7 +29,7 @@ class Doctor extends Component {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
     //fake data
-    arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors);
+    // arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors);
 
     return (
       <div className="section-share section-doctor">
