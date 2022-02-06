@@ -6,6 +6,8 @@ import {
   deleteUserService,
   editUserService,
   getTopDoctorHomeService,
+  getAllDoctors,
+  saveDetailDoctorService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -223,6 +225,56 @@ export const fetchTopDoctors = () => {
       console.log("FETCH_TOP_DOCTORS_FAILED", e);
       dispatch({
         type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchAllDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDoctors();
+      // console.log("check res all doctors", res);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+          allDoctors: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+        });
+      }
+    } catch (e) {
+      console.log("FETCH_ALL_DOCTORS_FAILED", e);
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+export const saveDetailDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await saveDetailDoctorService(data);
+      // console.log("check res all doctors", res);
+      if (res && res.errCode === 0) {
+        toast.success("Save a doctor detail infor successfully!");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+        });
+      } else {
+        toast.error("Cannot create a doctor detail infor!");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+        });
+      }
+    } catch (e) {
+      toast.error("Cannot create a doctor detail infor!");
+      console.log("SAVE_DETAIL_DOCTOR_FAILED", e);
+      dispatch({
+        type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
       });
     }
   };
