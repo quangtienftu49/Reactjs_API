@@ -28,7 +28,9 @@ class Doctor extends Component {
 
   handleViewDetailDoctor = (doctor) => {
     console.log("check onclick doctor", doctor);
-    this.props.history.push(`/detail-doctor/${doctor.id}`);
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
   };
 
   render() {

@@ -39,4 +39,21 @@
       background: orange;
     }
   }
+
+  .create-content-doctor {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: rgb(247, 168, 50);
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+
+    &:hover {
+      background: orange;
+    }
+  }
 }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
-
+import { withRouter } from "react-router";
 import { changeLanguageApp } from "../../store/actions";
 
 //Redux help save data which is used in many components
@@ -16,6 +16,12 @@ class HomeHeader extends Component {
     //fire redux event: actions
   };
 
+  returnHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`);
+    }
+  };
+
   render() {
     //language retrieved from redux not from parent
     let language = this.props.language;
@@ -25,7 +31,12 @@ class HomeHeader extends Component {
           <div className="home-header-content">
             <div className="left-content">
               <i className="fas fa-bars"></i>
-              <div className="header-logo"></div>
+              <div
+                className="header-logo"
+                onClick={() => {
+                  this.returnHome();
+                }}
+              ></div>
             </div>
             <div className="center-content">
               <div className="child-content">
@@ -196,4 +207,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);
