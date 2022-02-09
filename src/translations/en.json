@@ -60,5 +60,12 @@
     "homepage":{
         "outstanding-doctor": "Outstanding doctors",
         "see-more": "See more"
+    },
+
+    "manage-schedule":{
+        "title": "Manage doctor's examination schedule",
+        "choose-doctor": "Choose a doctor",
+        "choose-date": "Choose a date",
+        "save-appointment": "Save appointment"
     }
 }
