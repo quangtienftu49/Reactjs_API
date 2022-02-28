@@ -150,7 +150,6 @@ class ManageSchedule extends Component {
     // console.log("check state", this.state);
     let { rangeTime } = this.state;
     let { language } = this.props;
-    console.log("check state", this.state);
     return (
       <>
         <div className="manage-schedule-container">
