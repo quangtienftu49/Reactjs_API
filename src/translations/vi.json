@@ -11,7 +11,6 @@
        "support": "Hỗ trợ",
        "welcome": "Xin chào "
     },
-
     "banner": {
         "title1": "NỀN TẢNG Y TẾ",
         "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
@@ -58,24 +57,34 @@
         "upload": "Tải ảnh",
         "edit": "Lưu thay đổi"
     },
-    "homepage":{
+    "homepage": {
         "outstanding-doctor": "Bác sỹ nổi bật",
         "see-more": "Xem thêm"
     },
-
-    "manage-schedule":{
+    "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sỹ",
         "choose-doctor": "Chọn bác sỹ",
         "choose-date": "Chọn ngày",
         "save-appointment": "Lưu lịch hẹn"
     },
-    
-    "patient":{
+    "patient": {
         "detail-doctor":{
             "schedule":"Lịch khám",
             "no-schedule": "Không có lịch hẹn trong ngày này!",
             "pick": "Chọn",
             "book-free": "và đặt lịch (miễn phí)"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Tạo thêm thông tin bác sỹ",
+            "select-doctor": "Chọn bác sỹ",
+            "intro-infor": "Thông tin giới thiệu",
+            "save-infor": "Lưu thông tin",
+            "create-infor": "Tạo thông tin",
+            "select-price": "Chọn giá",
+            "select-payment": "Chọn phương thức thanh toán",
+            "select-province": "Chọn tỉnh thành"
         }
     }
    

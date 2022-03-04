@@ -57,24 +57,34 @@
         "upload": "Upload",
         "edit": "Save changes"
     },
-    "homepage":{
+    "homepage": {
         "outstanding-doctor": "Outstanding doctors",
         "see-more": "See more"
     },
-
     "manage-schedule": {
         "title": "Manage doctor's examination schedule",
         "choose-doctor": "Choose a doctor",
         "choose-date": "Choose a date",
         "save-appointment": "Save appointment"
     },
-
     "patient": {
         "detail-doctor": {
             "schedule": "Schedule",
             "no-schedule": "No schedule for the selected date!",
             "pick": "Pick time",
             "book-free": "and book appoinments (free)"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Create new doctor information",
+            "select-doctor": "Select a doctor",
+            "intro-infor": "Introduction infor",
+            "save-infor": "Save infor",
+            "create-infor": "Create infor",
+            "select-price": "Select price",
+            "select-payment": "Select payment method",
+            "select-province": "Select province"
         }
     }
 }

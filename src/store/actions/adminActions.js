@@ -35,6 +35,15 @@ export const fetchGenderStart = () => {
   };
 };
 
+export const fetchGenderSuccess = (genderData) => ({
+  type: actionTypes.FETCH_GENDER_SUCCESS,
+  data: genderData,
+});
+
+export const fetchGenderFailed = () => ({
+  type: actionTypes.FETCH_GENDER_FAILED,
+});
+
 export const fetchTitleStart = () => {
   return async (dispatch, getState) => {
     try {
@@ -51,6 +60,15 @@ export const fetchTitleStart = () => {
   };
 };
 
+export const fetchTitleSuccess = (titleData) => ({
+  type: actionTypes.FETCH_TITLE_SUCCESS,
+  data: titleData,
+});
+
+export const fetchTitleFailed = () => ({
+  type: actionTypes.FETCH_TITLE_FAILED,
+});
+
 export const fetchRoleStart = () => {
   return async (dispatch, getState) => {
     try {
@@ -66,24 +84,6 @@ export const fetchRoleStart = () => {
     }
   };
 };
-
-export const fetchGenderSuccess = (genderData) => ({
-  type: actionTypes.FETCH_GENDER_SUCCESS,
-  data: genderData,
-});
-
-export const fetchGenderFailed = () => ({
-  type: actionTypes.FETCH_GENDER_FAILED,
-});
-
-export const fetchTitleSuccess = (titleData) => ({
-  type: actionTypes.FETCH_TITLE_SUCCESS,
-  data: titleData,
-});
-
-export const fetchTitleFailed = () => ({
-  type: actionTypes.FETCH_TITLE_FAILED,
-});
 
 export const fetchRoleSuccess = (roleData) => ({
   type: actionTypes.FETCH_ROLE_SUCCESS,
@@ -302,3 +302,47 @@ export const fetchAllScheduleTime = () => {
     }
   };
 };
+
+export const getRequiredDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_START,
+      });
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+
+      if (
+        resPrice &&
+        resPrice.errCode === 0 &&
+        resPayment &&
+        resPayment.errCode === 0 &&
+        resProvince &&
+        resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data,
+        };
+
+        dispatch(getRequiredDoctorInforSuccess(data));
+      } else {
+        dispatch(getRequiredDoctorInforFailed());
+      }
+    } catch (e) {
+      dispatch(getRequiredDoctorInforFailed());
+      console.log("getRequiredDoctorInfor error", e);
+    }
+  };
+};
+
+export const getRequiredDoctorInforSuccess = (allRequiredDoctorData) => ({
+  type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_SUCCESS,
+  data: allRequiredDoctorData,
+});
+
+export const getRequiredDoctorInforFailed = () => ({
+  type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_FAILED,
+});
