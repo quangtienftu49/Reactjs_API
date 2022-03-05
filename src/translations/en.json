@@ -84,7 +84,10 @@
             "create-infor": "Create infor",
             "select-price": "Select price",
             "select-payment": "Select payment method",
-            "select-province": "Select province"
+            "select-province": "Select province",
+            "clinic-name": "Clinic name",
+            "clinic-address": "Clinic address",
+            "note": "Note"
         }
     }
 }
