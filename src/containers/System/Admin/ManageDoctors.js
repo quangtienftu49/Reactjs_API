@@ -9,6 +9,7 @@ import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
 import { CRUD_ACTIONS, LANGUAGES } from "../../../utils";
 import { getDetailInforDoctor } from "../../../services/userService";
+import { add } from "lodash";
 
 // const options = [
 //   { value: "chocolate", label: "Chocolate" },
@@ -202,15 +203,52 @@ class ManageDoctors extends Component {
 
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
+    let { listPayments, listPrice, listProvinces } = this.state;
 
     let res = await getDetailInforDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
+
+      let addressClinic = "",
+        nameClinic = "",
+        note = "",
+        paymentId = "",
+        priceId = "",
+        provinceId = "",
+        selectedPayment = "",
+        selectedPrice = "",
+        selectedProvince = "";
+
+      if (res.data.Doctor_infor) {
+        addressClinic = res.data.Doctor_infor.addressClinic;
+        nameClinic = res.data.Doctor_infor.nameClinic;
+        note = res.data.Doctor_infor.note;
+        paymentId = res.data.Doctor_infor.paymentId;
+        priceId = res.data.Doctor_infor.priceId;
+        provinceId = res.data.Doctor_infor.provinceId;
+
+        selectedPayment = listPayments.find((item) => {
+          return item && item.value === paymentId;
+        });
+        selectedPrice = listPrice.find((item) => {
+          return item && item.value === priceId;
+        });
+        selectedProvince = listProvinces.find((item) => {
+          return item && item.value === provinceId;
+        });
+      }
+
       this.setState({
         contentHTML: markdown.contentHTML,
         contentMarkdown: markdown.contentMarkdown,
         description: markdown.description,
         hasOldData: true,
+        addressClinic: addressClinic,
+        nameClinic: nameClinic,
+        note: note,
+        selectedPayment: selectedPayment,
+        selectedPrice: selectedPrice,
+        selectedProvince: selectedProvince,
       });
     } else {
       this.setState({
@@ -218,6 +256,9 @@ class ManageDoctors extends Component {
         contentMarkdown: "",
         description: "",
         hasOldData: false,
+        addressClinic: "",
+        nameClinic: "",
+        note: "",
       });
     }
     // console.log(`check handleChangeSelect:`, res);
@@ -246,7 +287,7 @@ class ManageDoctors extends Component {
   };
 
   render() {
-    console.log("check state", this.state);
+    // console.log("check state", this.state);
     let { hasOldData } = this.state;
     return (
       <div className="manage-doctors-container">
