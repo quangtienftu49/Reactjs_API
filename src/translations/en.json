@@ -73,6 +73,13 @@
             "no-schedule": "No schedule for the selected date!",
             "pick": "Pick time",
             "book-free": "and book appoinments (free)"
+        },
+        "extra-infor-doctor":{
+            "text-address": "The clinic address",
+            "price": "Price",
+            "details": "Details",
+            "payment": "The following payments are accepted: ",
+            "hide-price": "Hide price"
         }
     },
     "admin": {
