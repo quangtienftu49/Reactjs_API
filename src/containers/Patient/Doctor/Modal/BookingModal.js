@@ -18,7 +18,7 @@ class BookingModal extends Component {
   }
 
   render() {
-    let { isOpenModal, closeBookingModal } = this.props;
+    let { isOpenModal, closeBookingModal, scheduleData } = this.props;
 
     return (
       // Use reactstrap library for the modal
@@ -36,10 +36,49 @@ class BookingModal extends Component {
               <i className="fas fa-times"></i>
             </span>
           </div>
-          <div className="booking-modal-body">Inside body modal</div>
+
+          <div className="booking-modal-body">
+            {/* {JSON.stringify(scheduleData)} convert object to string */}
+            <div className="doctor-infor"></div>
+            <div className="price">Giá khám 500.000VND</div>
+            <div className="row">
+              <div className="col-6 form-group">
+                <label>Họ tên</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-6 form-group">
+                <label>Số điện thoại</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-6 form-group">
+                <label>Email</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-6 form-group">
+                <label>Địa chỉ liên hệ</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-12 form-group">
+                <label>Lý do khám</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-6 form-group">
+                <label>Đặt lịch khám cho ai</label>
+                <input className="form-control"></input>
+              </div>
+              <div className="col-6 form-group">
+                <label>Giới tính</label>
+                <input className="form-control"></input>
+              </div>
+            </div>
+          </div>
           <div className="booking-modal-footer">
-            <button className="btn-booking-confirm">Xác nhận</button>
-            <button className="btn-booking-cancel">Hủy</button>
+            <button className="btn-booking-confirm" onClick={closeBookingModal}>
+              Xác nhận
+            </button>
+            <button className="btn-booking-cancel" onClick={closeBookingModal}>
+              Hủy
+            </button>
           </div>
         </div>
       </Modal>
