@@ -1,33 +1,36 @@
-.intro-doctor {
-  padding: 0 100px;
-  display: flex;
-  // height: 100px;
-
-  .content-left {
-    // width: 20%;
-    background: center center no-repeat;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 10px 20px;
-    background-size: cover;
-  }
-
-  .content-right {
-    width: 80%;
+.profile-doctor-container {
+  .intro-doctor {
+    // padding: 0 100px;
     display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
+    // height: 100px;
 
-    .above {
-      font-size: 20px;
-      font-weight: 600;
-      padding-top: 15px;
+    .content-left {
+      // width: 20%;
+      background: center center no-repeat;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      // margin: 10px 20px;
+      background-size: cover;
     }
 
-    .below {
-      padding-top: 10px;
+    .content-right {
+      width: calc(100% - 120px);
+      display: flex;
+      flex-direction: column;
+      padding-left: 10px;
+      // padding-right: 10px;
+
+      .above {
+        // font-size: 20px;
+        font-weight: 600;
+        padding-top: 15px;
+      }
+
+      .below {
+        // padding-top: 10px;
+        text-align: justify;
+      }
     }
   }
 }

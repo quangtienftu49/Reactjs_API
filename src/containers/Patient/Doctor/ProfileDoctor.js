@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./ProfileDoctor.scss";
+import { LANGUAGES } from "../../../utils";
 import { getProfileDoctorById } from "../../../services/userService";
 
 class ProfileDoctor extends Component {
@@ -40,25 +41,34 @@ class ProfileDoctor extends Component {
 
   render() {
     let { dataProfile } = this.state;
+    let nameVi = "";
+    let nameEn = "";
+    let { language } = this.props;
+    if (dataProfile && dataProfile.positionData) {
+      nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.firstName} ${dataProfile.lastName}`;
+      nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`;
+    }
     console.log("check state: ", this.state);
     return (
-      <div className="intro-doctor">
-        <div
-          className="content-left"
-          style={{
-            backgroundImage: `url(${
-              dataProfile && dataProfile.image ? dataProfile.image : ""
-            })`,
-          }}
-        ></div>
-        <div className="content-right">
-          <div className="above">
-            {/* {language === LANGUAGES.VI ? nameVi : nameEn} */}
-          </div>
-          <div className="below">
-            {/* {dataProfile.Markdown && dataProfile.Markdown.description && (
-              <span>{dataProfile.Markdown.description}</span>
-            )} */}
+      <div className="profile-doctor-container">
+        <div className="intro-doctor">
+          <div
+            className="content-left"
+            style={{
+              backgroundImage: `url(${
+                dataProfile && dataProfile.image ? dataProfile.image : ""
+              })`,
+            }}
+          ></div>
+          <div className="content-right">
+            <div className="above">
+              {language === LANGUAGES.VI ? nameVi : nameEn}
+            </div>
+            <div className="below">
+              {dataProfile.Markdown && dataProfile.Markdown.description && (
+                <span>{dataProfile.Markdown.description}</span>
+              )}
+            </div>
           </div>
         </div>
       </div>
