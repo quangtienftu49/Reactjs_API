@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./BookingModal.scss";
 import { Modal } from "reactstrap";
+import ProfileDoctor from "../ProfileDoctor";
+import { getProfileDoctorById } from "../../../../services/userService";
+import _ from "lodash";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -19,7 +22,16 @@ class BookingModal extends Component {
 
   render() {
     let { isOpenModal, closeBookingModal, scheduleData } = this.props;
+    let doctorId = "";
+    // _ lodash check objects empty or not
+    if (scheduleData && !_.isEmpty(scheduleData)) {
+      doctorId = scheduleData.doctorId;
+    }
 
+    // same code functioning like if above
+    // let doctorId = scheduleData && !_.isEmpty(scheduleData) ? scheduleData.doctorId : '';
+
+    // console.log("check data props from modal: ", this.props);
     return (
       // Use reactstrap library for the modal
       // toggle={}
@@ -39,7 +51,9 @@ class BookingModal extends Component {
 
           <div className="booking-modal-body">
             {/* {JSON.stringify(scheduleData)} convert object to string */}
-            <div className="doctor-infor"></div>
+            <div className="doctor-infor">
+              <ProfileDoctor doctorId={doctorId} />
+            </div>
             <div className="price">Giá khám 500.000VND</div>
             <div className="row">
               <div className="col-6 form-group">
