@@ -30,8 +30,8 @@ class BookingModal extends Component {
 
     // same code functioning like if above
     // let doctorId = scheduleData && !_.isEmpty(scheduleData) ? scheduleData.doctorId : '';
-
-    // console.log("check data props from modal: ", this.props);
+    console.log("check state", this.state);
+    console.log("check scheduleData: ", scheduleData);
     return (
       // Use reactstrap library for the modal
       // toggle={}
@@ -54,7 +54,6 @@ class BookingModal extends Component {
             <div className="doctor-infor">
               <ProfileDoctor doctorId={doctorId} />
             </div>
-            <div className="price">Giá khám 500.000VND</div>
             <div className="row">
               <div className="col-6 form-group">
                 <label>Họ tên</label>
