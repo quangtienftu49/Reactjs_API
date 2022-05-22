@@ -44,12 +44,12 @@ class ProfileDoctor extends Component {
     let { dataProfile } = this.state;
     let nameVi = "";
     let nameEn = "";
-    let { language } = this.props;
+    let { language, isShowDescriptionDoctor, scheduleData } = this.props;
     if (dataProfile && dataProfile.positionData) {
       nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.firstName} ${dataProfile.lastName}`;
       nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
-    console.log("check state: ", this.state);
+    console.log("check props: ", scheduleData);
     return (
       <div className="profile-doctor-container">
         <div className="intro-doctor">
@@ -66,8 +66,12 @@ class ProfileDoctor extends Component {
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
             <div className="below">
-              {dataProfile.Markdown && dataProfile.Markdown.description && (
-                <span>{dataProfile.Markdown.description}</span>
+              {isShowDescriptionDoctor === true && (
+                <>
+                  {dataProfile.Markdown && dataProfile.Markdown.description && (
+                    <span>{dataProfile.Markdown.description}</span>
+                  )}
+                </>
               )}
             </div>
           </div>
