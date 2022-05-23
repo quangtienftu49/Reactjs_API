@@ -5,6 +5,8 @@ import "./ProfileDoctor.scss";
 import { LANGUAGES } from "../../../utils";
 import { getProfileDoctorById } from "../../../services/userService";
 import NumberFormat from "react-number-format";
+import _ from "lodash";
+import moment from "moment";
 
 class ProfileDoctor extends Component {
   constructor(props) {
@@ -40,6 +42,34 @@ class ProfileDoctor extends Component {
     }
   }
 
+  renderTimeBooking = (dataTime) => {
+    let { language } = this.props;
+    if (dataTime && !_.isEmpty(dataTime)) {
+      // Convert string to date using moment
+      // Check language to change date format
+      let date =
+        language === LANGUAGES.VI
+          ? // ? moment(new Date(dataTime.date)).format("dddd - DD/MM/YYYY")
+            // : moment(new Date(dataTime.date)).format("ddd - MM/DD/YYYY");
+
+            // unix is another way to convert string to date
+            // + to convert string to number
+            // / 1000 to convert ms to s (timestamp)
+            moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
+          : moment
+              .unix(+dataTime.date / 1000)
+              .locale("en") // convert to english days (MON, SUN)
+              .format("ddd - MM/DD/YYYY");
+      return (
+        <>
+          <div>16:30 - 17:00 - {date}</div>
+          <div>Miễn phí đặt lịch</div>
+        </>
+      );
+    }
+    return <></>;
+  };
+
   render() {
     let { dataProfile } = this.state;
     let nameVi = "";
@@ -66,12 +96,14 @@ class ProfileDoctor extends Component {
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
             <div className="below">
-              {isShowDescriptionDoctor === true && (
+              {isShowDescriptionDoctor === true ? (
                 <>
                   {dataProfile.Markdown && dataProfile.Markdown.description && (
                     <span>{dataProfile.Markdown.description}</span>
                   )}
                 </>
+              ) : (
+                <>{this.renderTimeBooking(scheduleData)}</>
               )}
             </div>
           </div>
