@@ -5,7 +5,7 @@ import "./ProfileDoctor.scss";
 import { LANGUAGES } from "../../../utils";
 import { getProfileDoctorById } from "../../../services/userService";
 import NumberFormat from "react-number-format";
-import _ from "lodash";
+import _, { times } from "lodash";
 import moment from "moment";
 
 class ProfileDoctor extends Component {
@@ -45,6 +45,11 @@ class ProfileDoctor extends Component {
   renderTimeBooking = (dataTime) => {
     let { language } = this.props;
     if (dataTime && !_.isEmpty(dataTime)) {
+      let time =
+        language === LANGUAGES.VI
+          ? dataTime.timeTypeData.valueVi
+          : dataTime.timeTypeData.valueEn;
+
       // Convert string to date using moment
       // Check language to change date format
       let date =
@@ -62,7 +67,9 @@ class ProfileDoctor extends Component {
               .format("ddd - MM/DD/YYYY");
       return (
         <>
-          <div>16:30 - 17:00 - {date}</div>
+          <div>
+            {time} - {date}
+          </div>
           <div>Miễn phí đặt lịch</div>
         </>
       );
