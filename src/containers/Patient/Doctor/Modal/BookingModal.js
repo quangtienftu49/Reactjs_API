@@ -10,7 +10,16 @@ import _ from "lodash";
 class BookingModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      reason: "",
+      birthday: "",
+      sex: "",
+      doctorId: "",
+    };
   }
 
   async componentDidMount() {}
@@ -19,6 +28,13 @@ class BookingModal extends Component {
     if (this.props.language !== prevProps.language) {
     }
   }
+
+  handleOnChangeInput = (e, id) => {
+    let valueInput = e.target.value;
+    let stateCopy = { ...this.state };
+    stateCopy[id] = valueInput;
+    this.setState({ ...stateCopy });
+  };
 
   render() {
     let { isOpenModal, closeBookingModal, scheduleData } = this.props;
@@ -32,6 +48,7 @@ class BookingModal extends Component {
     // let doctorId = scheduleData && !_.isEmpty(scheduleData) ? scheduleData.doctorId : '';
     console.log("check state", this.state);
     console.log("check scheduleData: ", scheduleData);
+
     return (
       // Use reactstrap library for the modal
       // toggle={}
@@ -61,31 +78,59 @@ class BookingModal extends Component {
             <div className="row">
               <div className="col-6 form-group">
                 <label>Họ tên</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.fullName}
+                  onChange={(e) => this.handleOnChangeInput(e, "fullName")}
+                ></input>
               </div>
               <div className="col-6 form-group">
                 <label>Số điện thoại</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.phoneNumber}
+                  onChange={(e) => this.handleOnChangeInput(e, "phoneNumber")}
+                ></input>
               </div>
               <div className="col-6 form-group">
                 <label>Email</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.email}
+                  onChange={(e) => this.handleOnChangeInput(e, "email")}
+                ></input>
               </div>
               <div className="col-6 form-group">
                 <label>Địa chỉ liên hệ</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.address}
+                  onChange={(e) => this.handleOnChangeInput(e, "address")}
+                ></input>
               </div>
               <div className="col-12 form-group">
                 <label>Lý do khám</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.reason}
+                  onChange={(e) => this.handleOnChangeInput(e, "reason")}
+                ></input>
               </div>
               <div className="col-6 form-group">
-                <label>Đặt lịch khám cho ai</label>
-                <input className="form-control"></input>
+                <label>Ngày sinh</label>
+                <input
+                  className="form-control"
+                  value={this.state.birthday}
+                  onChange={(e) => this.handleOnChangeInput(e, "bỉthday")}
+                ></input>
               </div>
               <div className="col-6 form-group">
                 <label>Giới tính</label>
-                <input className="form-control"></input>
+                <input
+                  className="form-control"
+                  value={this.state.sex}
+                  onChange={(e) => this.handleOnChangeInput(e, "sex")}
+                ></input>
               </div>
             </div>
           </div>

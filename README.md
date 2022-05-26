@@ -37,32 +37,13 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image1.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image2.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image3.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image4.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image5.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image6.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image7.png)
+(https://github.com/quangtienftu49/Reactjs_API/blob/master/screenshots/image8.png)
