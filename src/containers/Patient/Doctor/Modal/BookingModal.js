@@ -60,6 +60,16 @@ class BookingModal extends Component {
         genders: this.buildDataGender(this.props.genders),
       });
     }
+
+    if (this.props.scheduleData !== prevProps.scheduleData) {
+      if (this.props.scheduleData && !_.isEmpty(this.props.scheduleData)) {
+        let doctorId = this.props.scheduleData.doctorId;
+
+        this.setState({
+          doctorId: doctorId,
+        });
+      }
+    }
   }
 
   handleOnChangeInput = (e, id) => {
