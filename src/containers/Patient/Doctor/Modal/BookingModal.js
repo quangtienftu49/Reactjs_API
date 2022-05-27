@@ -6,6 +6,7 @@ import { Modal } from "reactstrap";
 import ProfileDoctor from "../ProfileDoctor";
 import { getProfileDoctorById } from "../../../../services/userService";
 import _ from "lodash";
+import DatePicker from "../../../../components/Input/DatePicker";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -36,6 +37,12 @@ class BookingModal extends Component {
     this.setState({ ...stateCopy });
   };
 
+  handleOnChangeDatePicker = (date) => {
+    this.setState({
+      birthday: date[0],
+    });
+  };
+
   render() {
     let { isOpenModal, closeBookingModal, scheduleData } = this.props;
     let doctorId = "";
@@ -44,10 +51,12 @@ class BookingModal extends Component {
       doctorId = scheduleData.doctorId;
     }
 
+    console.log("check state inside booking modal", this.state);
+
     // same code functioning like if above
     // let doctorId = scheduleData && !_.isEmpty(scheduleData) ? scheduleData.doctorId : '';
-    console.log("check state", this.state);
-    console.log("check scheduleData: ", scheduleData);
+    // console.log("check state", this.state);
+    // console.log("check scheduleData: ", scheduleData);
 
     return (
       // Use reactstrap library for the modal
@@ -118,11 +127,11 @@ class BookingModal extends Component {
               </div>
               <div className="col-6 form-group">
                 <label>Ngày sinh</label>
-                <input
+                <DatePicker
+                  onChange={this.handleOnChangeDatePicker}
                   className="form-control"
                   value={this.state.birthday}
-                  onChange={(e) => this.handleOnChangeInput(e, "bỉthday")}
-                ></input>
+                />
               </div>
               <div className="col-6 form-group">
                 <label>Giới tính</label>
