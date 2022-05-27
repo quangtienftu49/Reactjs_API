@@ -7,6 +7,9 @@ import ProfileDoctor from "../ProfileDoctor";
 import { getProfileDoctorById } from "../../../../services/userService";
 import _ from "lodash";
 import DatePicker from "../../../../components/Input/DatePicker";
+import * as actions from "../../../../store/actions";
+import { LANGUAGES } from "../../../../utils";
+import Select from "react-select";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -18,15 +21,44 @@ class BookingModal extends Component {
       address: "",
       reason: "",
       birthday: "",
-      sex: "",
+      selectedGender: "",
       doctorId: "",
+
+      genders: "",
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    this.props.getGenders();
+  }
+
+  buildDataGender = (data) => {
+    let result = [];
+    let language = this.props.language;
+
+    if (data && data.length > 0) {
+      data.map((item) => {
+        let object = {};
+        object.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn;
+        object.value = item.keyMap;
+
+        result.push(object);
+      });
+    }
+    return result;
+  };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
+      this.setState({
+        genders: this.buildDataGender(this.props.genders),
+      });
+    }
+
+    if (this.props.genders !== prevProps.genders) {
+      this.setState({
+        genders: this.buildDataGender(this.props.genders),
+      });
     }
   }
 
@@ -41,6 +73,14 @@ class BookingModal extends Component {
     this.setState({
       birthday: date[0],
     });
+  };
+
+  handleChangeSelect = (selectedOption) => {
+    this.setState({ selectedGender: selectedOption });
+  };
+
+  handleConfirmBooking = () => {
+    console.log("hit confirm button", this.state);
   };
 
   render() {
@@ -135,16 +175,19 @@ class BookingModal extends Component {
               </div>
               <div className="col-6 form-group">
                 <label>Giới tính</label>
-                <input
-                  className="form-control"
-                  value={this.state.sex}
-                  onChange={(e) => this.handleOnChangeInput(e, "sex")}
-                ></input>
+                <Select
+                  value={this.state.selectedGender}
+                  onChange={this.handleChangeSelect}
+                  options={this.state.genders}
+                />
               </div>
             </div>
           </div>
           <div className="booking-modal-footer">
-            <button className="btn-booking-confirm" onClick={closeBookingModal}>
+            <button
+              className="btn-booking-confirm"
+              onClick={() => this.handleConfirmBooking()}
+            >
               Xác nhận
             </button>
             <button className="btn-booking-cancel" onClick={closeBookingModal}>
@@ -160,11 +203,14 @@ class BookingModal extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    genders: state.admin.genders,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getGenders: () => dispatch(actions.fetchGenderStart()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookingModal);
