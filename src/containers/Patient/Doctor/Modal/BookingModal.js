@@ -10,6 +10,8 @@ import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
 import { LANGUAGES } from "../../../../utils";
 import Select from "react-select";
+import { postPatientBookAppointment } from "../../../../services/userService";
+import { toast } from "react-toastify";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class BookingModal extends Component {
       doctorId: "",
 
       genders: "",
+      timeType: "",
     };
   }
 
@@ -64,9 +67,11 @@ class BookingModal extends Component {
     if (this.props.scheduleData !== prevProps.scheduleData) {
       if (this.props.scheduleData && !_.isEmpty(this.props.scheduleData)) {
         let doctorId = this.props.scheduleData.doctorId;
+        let timeType = this.props.scheduleData.timeType;
 
         this.setState({
           doctorId: doctorId,
+          timeType: timeType,
         });
       }
     }
@@ -89,8 +94,29 @@ class BookingModal extends Component {
     this.setState({ selectedGender: selectedOption });
   };
 
-  handleConfirmBooking = () => {
-    console.log("hit confirm button", this.state);
+  handleConfirmBooking = async () => {
+    // console.log("hit confirm button", this.state);
+
+    // Validate input
+    let date = new Date(this.state.birthday).getTime();
+    let res = await postPatientBookAppointment({
+      fullName: this.state.fullName,
+      phoneNumber: this.state.phoneNumber,
+      email: this.state.email,
+      address: this.state.address,
+      reason: this.state.reason,
+      date: this.state.birthday,
+      selectedGender: this.state.selectedGender.value,
+      doctorId: this.state.doctorId,
+      timeType: this.state.timeType,
+    });
+
+    if (res && res.errCode === 0) {
+      toast.success("Booking a new appointment successfully!");
+      this.props.closeBookingModal();
+    } else {
+      toast.error("Booking a new appointment failed!");
+    }
   };
 
   render() {
