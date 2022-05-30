@@ -90,7 +90,9 @@
             "birthday": "Ngày sinh",
             "gender": "Giới tính",
             "confirm": "Xác nhận",
-            "cancel": "Hủy"
+            "cancel": "Hủy",
+            "signUpFree": "Miễn phí đặt lịch",
+            "price": "Giá khám: "
         }
     },
     "admin": {

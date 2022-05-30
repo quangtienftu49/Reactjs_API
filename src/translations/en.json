@@ -82,7 +82,7 @@
             "hide-price": "Hide price"
         },
         "booking-modal":{
-            "title": "Sign up for an appointment",
+            "title": "Book an appointment",
             "fullName": "Full name",
             "phoneNumber": "Phone number",
             "address": "Address",
@@ -90,7 +90,9 @@
             "birthday": "Birthday",
             "gender": "Sex",
             "confirm": "Confirm",
-            "cancel": "Cancel"
+            "cancel": "Cancel",
+            "signUpFree": "Book for free",
+            "price": "Price: "
         }
     },
     "admin": {
