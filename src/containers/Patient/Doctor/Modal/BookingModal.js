@@ -145,7 +145,9 @@ class BookingModal extends Component {
       >
         <div className="booking-modal-content">
           <div className="booking-modal-header">
-            <span className="left">Thông tin đặt lịch khám bệnh</span>
+            <span className="left">
+              <FormattedMessage id="patient.booking-modal.title" />
+            </span>
             <span className="right" onClick={closeBookingModal}>
               <i className="fas fa-times"></i>
             </span>
@@ -162,7 +164,9 @@ class BookingModal extends Component {
             </div>
             <div className="row">
               <div className="col-6 form-group">
-                <label>Họ tên</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.fullName" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.fullName}
@@ -170,7 +174,9 @@ class BookingModal extends Component {
                 ></input>
               </div>
               <div className="col-6 form-group">
-                <label>Số điện thoại</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.phoneNumber" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.phoneNumber}
@@ -186,7 +192,9 @@ class BookingModal extends Component {
                 ></input>
               </div>
               <div className="col-6 form-group">
-                <label>Địa chỉ liên hệ</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.address" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.address}
@@ -194,7 +202,9 @@ class BookingModal extends Component {
                 ></input>
               </div>
               <div className="col-12 form-group">
-                <label>Lý do khám</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.reason" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.reason}
@@ -202,7 +212,9 @@ class BookingModal extends Component {
                 ></input>
               </div>
               <div className="col-6 form-group">
-                <label>Ngày sinh</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.birthday" />
+                </label>
                 <DatePicker
                   onChange={this.handleOnChangeDatePicker}
                   className="form-control"
@@ -210,7 +222,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-6 form-group">
-                <label>Giới tính</label>
+                <label>
+                  <FormattedMessage id="patient.booking-modal.gender" />
+                </label>
                 <Select
                   value={this.state.selectedGender}
                   onChange={this.handleChangeSelect}
@@ -224,10 +238,10 @@ class BookingModal extends Component {
               className="btn-booking-confirm"
               onClick={() => this.handleConfirmBooking()}
             >
-              Xác nhận
+              <FormattedMessage id="patient.booking-modal.confirm" />
             </button>
             <button className="btn-booking-cancel" onClick={closeBookingModal}>
-              Hủy
+              <FormattedMessage id="patient.booking-modal.cancel" />
             </button>
           </div>
         </div>

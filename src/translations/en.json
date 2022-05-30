@@ -80,6 +80,17 @@
             "details": "Details",
             "payment": "The following payments are accepted: ",
             "hide-price": "Hide price"
+        },
+        "booking-modal":{
+            "title": "Sign up for an appointment",
+            "fullName": "Full name",
+            "phoneNumber": "Phone number",
+            "address": "Address",
+            "reason": "Reason",
+            "birthday": "Birthday",
+            "gender": "Sex",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
         }
     },
     "admin": {
