@@ -9,9 +9,14 @@
     text-transform: uppercase;
   }
 
-  .btn-add-new-specialty {
-  }
-
-  .all-specialties {
+  .all-new-specialty {
+    .btn-save-specialty {
+      border: none;
+      padding: 5px 5px;
+      background: orange;
+      min-width: 75px;
+      margin: 15px 0;
+      font-weight: 600;
+    }
   }
 }
