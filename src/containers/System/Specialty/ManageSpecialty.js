@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import "./ManageSpecialty.scss";
 
 class ManageSpecialty extends Component {
   constructor(props) {
@@ -16,7 +17,15 @@ class ManageSpecialty extends Component {
   }
 
   render() {
-    return <div>Hello from Manage Specialty</div>;
+    return (
+      <div className="manage-specialty-container">
+        <div className="manage-specialty-title">Quản lý chuyên khoa</div>
+        <div className="btn-add-new-specialty">
+          <button>Add new</button>
+        </div>
+        <div className="all-specialties"></div>
+      </div>
+    );
   }
 }
 
