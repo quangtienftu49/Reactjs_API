@@ -5,6 +5,7 @@ import UserManage from "../containers/System/UserManage";
 import UserRedux from "../containers/System/Admin/UserRedux";
 import Header from "../containers/Header/Header";
 import ManageDoctors from "../containers/System/Admin/ManageDoctors";
+import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 
 class System extends Component {
   render() {
@@ -18,6 +19,10 @@ class System extends Component {
               <Route path="/system/user-manage" component={UserManage} />
               <Route path="/system/user-redux" component={UserRedux} />
               <Route path="/system/manage-doctor" component={ManageDoctors} />
+              <Route
+                path="/system/manage-specialty"
+                component={ManageSpecialty}
+              />
               <Route
                 component={() => {
                   return <Redirect to={systemMenuPath} />;
