@@ -61,6 +61,12 @@ class ManageSpecialty extends Component {
     let res = await createNewSpecialty(this.state);
     if (res && res.errCode === 0) {
       toast.success("Saved a new specialty successfully!");
+      this.setState({
+        name: "",
+        imageBase64: "",
+        descriptionHTML: "",
+        descriptionMarkdown: "",
+      });
     } else {
       toast.error("Failed to save a new specialty!");
       // console.log("check res", res);
