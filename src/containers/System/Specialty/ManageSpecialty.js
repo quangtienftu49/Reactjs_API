@@ -76,11 +76,15 @@ class ManageSpecialty extends Component {
   render() {
     return (
       <div className="manage-specialty-container">
-        <div className="manage-specialty-title">Quản lý chuyên khoa</div>
+        <div className="manage-specialty-title">
+          <FormattedMessage id="manage-specialty.manage-specialty" />
+        </div>
 
         <div className="all-new-specialty row">
           <div className="col-6 form-group">
-            <label>Tên chuyên khoa</label>
+            <label>
+              <FormattedMessage id="manage-specialty.specialty-title" />
+            </label>
             <input
               className="form-control"
               type="text"
@@ -89,7 +93,9 @@ class ManageSpecialty extends Component {
             ></input>
           </div>
           <div className="col-6 form-group">
-            <label>Ảnh chuyên khoa</label>
+            <label>
+              <FormattedMessage id="manage-specialty.specialty-image" />
+            </label>
             <input
               className="form-control-file"
               type="file"
@@ -109,7 +115,7 @@ class ManageSpecialty extends Component {
               className="btn-save-specialty"
               onClick={() => this.handleSaveNewSpecialty()}
             >
-              Save
+              <FormattedMessage id="manage-specialty.save" />
             </button>
           </div>
         </div>

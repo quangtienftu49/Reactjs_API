@@ -68,6 +68,12 @@
         "choose-date": "Chọn ngày",
         "save-appointment": "Lưu lịch hẹn"
     },
+    "manage-specialty":{
+        "manage-specialty":"Quản lý chuyên khoa",
+        "specialty-title": "Chuyên khoa",
+        "specialty-image": "Ảnh chuyên khoa",
+        "save": "Lưu"
+    },
     "patient": {
         "detail-doctor":{
             "schedule":"Lịch khám",

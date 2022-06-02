@@ -68,6 +68,12 @@
         "choose-date": "Choose a date",
         "save-appointment": "Save appointment"
     },
+    "manage-specialty":{
+        "manage-specialty":"Manage specialties",
+        "specialty-title": "Specialty",
+        "specialty-image": "Image of specialty",
+        "save": "Save"
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Schedule",
