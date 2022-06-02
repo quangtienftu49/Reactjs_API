@@ -30,7 +30,7 @@ class ManageSpecialty extends Component {
     let stateCopy = { ...this.state };
     stateCopy[id] = e.target.value;
     this.setState({
-      stateCopy,
+      ...stateCopy,
     });
   };
 
@@ -53,6 +53,10 @@ class ManageSpecialty extends Component {
         imageBase64: base64,
       });
     }
+  };
+
+  handleSaveNewSpecialty = () => {
+    console.log("check state", this.state);
   };
 
   render() {
@@ -87,7 +91,12 @@ class ManageSpecialty extends Component {
             />
           </div>
           <div className="col-12">
-            <button className="btn-save-specialty">Save</button>
+            <button
+              className="btn-save-specialty"
+              onClick={() => this.handleSaveNewSpecialty()}
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
