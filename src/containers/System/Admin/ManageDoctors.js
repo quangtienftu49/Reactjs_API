@@ -36,12 +36,20 @@ class ManageDoctors extends Component {
       listPrice: [],
       listPayments: [],
       listProvinces: [],
+      listClinics: [],
+      listSpecialties: [],
+
       selectedPrice: "",
       selectedPayment: "",
       selectedProvince: "",
+      selectedClinic: "",
+      selectedSpecialty: "",
+
       nameClinic: "",
       addressClinic: "",
       note: "",
+      clinicId: "",
+      specialtyId: "",
     };
   }
 
@@ -106,6 +114,17 @@ class ManageDoctors extends Component {
           result.push(object);
         });
       }
+
+      if (type === "SPECIALTY") {
+        inputData.map((item, index) => {
+          let object = {};
+
+          object.label = item.name;
+          object.value = item.id;
+
+          result.push(object);
+        });
+      }
     }
 
     return result;
@@ -149,7 +168,7 @@ class ManageDoctors extends Component {
       //   "check get data from redux",
       //   this.props.allRequiredDoctorData
       // );
-      let { resPrice, resPayment, resProvince } =
+      let { resPrice, resPayment, resProvince, resSpecialty } =
         this.props.allRequiredDoctorData;
 
       let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
@@ -157,6 +176,10 @@ class ManageDoctors extends Component {
       let dataSelectProvince = this.buildDataInputSelect(
         resProvince,
         "PROVINCE"
+      );
+      let dataSelectSpecialty = this.buildDataInputSelect(
+        resSpecialty,
+        "SPECIALTY"
       );
 
       // console.log(
@@ -170,6 +193,7 @@ class ManageDoctors extends Component {
         listPrice: dataSelectPrice,
         listPayments: dataSelectPayment,
         listProvinces: dataSelectProvince,
+        listSpecialties: dataSelectSpecialty,
       });
     }
   }
@@ -197,6 +221,11 @@ class ManageDoctors extends Component {
       nameClinic: this.state.nameClinic,
       addressClinic: this.state.addressClinic,
       note: this.state.note,
+      clinicId:
+        this.state.selectedClinic && this.state.selectedClinic.value
+          ? this.state.selectedClinic.value
+          : "",
+      specialtyId: this.state.selectedSpecialty.value,
     });
   };
 
@@ -287,7 +316,7 @@ class ManageDoctors extends Component {
 
   render() {
     // console.log("check state", this.state);
-    let { hasOldData } = this.state;
+    let { hasOldData, listSpecialties } = this.state;
     return (
       <div className="manage-doctors-container">
         <div className="manage-doctors-title">
@@ -401,14 +430,45 @@ class ManageDoctors extends Component {
             ></input>
           </div>
         </div>
+        <div className="row">
+          <div className="col-4 form-group">
+            <label>
+              <FormattedMessage id="admin.manage-doctor.select-specialty" />
+            </label>
+            <Select
+              value={this.state.selectedSpecialty}
+              options={this.state.listSpecialties}
+              placeholder={
+                <FormattedMessage id="admin.manage-doctor.select-specialty" />
+              }
+              onChange={this.handleChangeSelectDoctorInfor}
+              name="selectedSpecialty"
+            />
+          </div>
+          <div className="col-4 form-group">
+            <label>
+              <FormattedMessage id="admin.manage-doctor.select-clinic" />
+            </label>
+            <Select
+              value={this.state.selectedClinic}
+              options={this.state.listClinics}
+              placeholder={
+                <FormattedMessage id="admin.manage-doctor.select-clinic" />
+              }
+              onChange={this.handleChangeSelectDoctorInfor}
+              name="selectedClinic"
+            />
+          </div>
+        </div>
         <div className="manage-doctors-editor">
           <MdEditor
-            style={{ height: "500px" }}
+            style={{ height: "300px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
             value={this.state.contentMarkdown}
           />
         </div>
+
         <button
           className={
             hasOldData ? "save-content-doctor" : "create-content-doctor"

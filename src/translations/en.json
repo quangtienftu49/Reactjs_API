@@ -104,7 +104,7 @@
     },
     "admin": {
         "manage-doctor": {
-            "title": "Create new doctor information",
+            "title": "Create new doctor profile",
             "select-doctor": "Select a doctor",
             "intro-infor": "Introduction infor",
             "save-infor": "Save infor",
@@ -114,7 +114,9 @@
             "select-province": "Select province",
             "clinic-name": "Clinic name",
             "clinic-address": "Clinic address",
-            "note": "Note"
+            "note": "Note",
+            "select-specialty": "Select a specialty",
+            "select-clinic": "Select a clinic"
         }
     }
 }
