@@ -23,15 +23,22 @@ class DetailSpecialty extends Component {
   render() {
     let { arrDoctorId } = this.state;
     return (
-      <>
+      <div className="detail-specialty-container">
         <HomeHeader />
-        <div>Hello from Details Specialty</div>;
+        <div className="specialty-description">Details Specialty</div>;
         {arrDoctorId &&
           arrDoctorId.length > 0 &&
           arrDoctorId.map((item, index) => {
-            return <DoctorSchedule doctorIdFromParent={item} key={index} />;
+            return (
+              <div className="each-doctor" key={index}>
+                <div className="content-left"></div>
+                <div className="content-right">
+                  <DoctorSchedule doctorIdFromParent={item} />
+                </div>
+              </div>
+            );
           })}
-      </>
+      </div>
     );
   }
 }

@@ -1,0 +1,22 @@
+.detail-specialty-container {
+  .specialty-description {
+    border: 1px solid red;
+    height: 200px;
+  }
+
+  .each-doctor {
+    display: flex;
+    width: 100%;
+    min-height: 300px;
+    margin: 15px 0;
+    border: 1px solid green;
+
+    .content-left {
+      width: 50%;
+    }
+
+    .content-right {
+      width: 50%;
+    }
+  }
+}
