@@ -16,6 +16,8 @@ class DoctorExtraInfor extends Component {
   }
 
   async componentDidMount() {
+    // when open a page, if doctorIdFromParent got Id from URL already
+    // this code will run
     if (this.props.doctorIdFromParent) {
       let res = await getExtraInforDoctorById(this.props.doctorIdFromParent);
       if (res && res.errCode === 0) {
@@ -27,6 +29,8 @@ class DoctorExtraInfor extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
+    // after render fired, any changes of Id for doctorIdFromParent
+    // this code will run
     if (this.props.language !== prevProps.language) {
     }
 
