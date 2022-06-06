@@ -4,6 +4,8 @@ import { FormattedMessage } from "react-intl";
 import "./DetailSpecialty.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
+import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
+import { getExtraInforDoctorById } from "../../../services/userService";
 
 class DetailSpecialty extends Component {
   constructor(props) {
@@ -13,7 +15,14 @@ class DetailSpecialty extends Component {
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    let res = await getExtraInforDoctorById(this.props.doctorIdFromParent);
+    if (res && res.errCode === 0) {
+      this.setState({
+        extraInfor: res.data,
+      });
+    }
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
@@ -33,7 +42,12 @@ class DetailSpecialty extends Component {
               <div className="each-doctor" key={index}>
                 <div className="content-left"></div>
                 <div className="content-right">
-                  <DoctorSchedule doctorIdFromParent={item} />
+                  <div className="doctor-schedule">
+                    <DoctorSchedule doctorIdFromParent={item} />
+                  </div>
+                  <div className="doctor-extra-infor">
+                    <DoctorExtraInfor doctorIdFromParent={item} />
+                  </div>
                 </div>
               </div>
             );
