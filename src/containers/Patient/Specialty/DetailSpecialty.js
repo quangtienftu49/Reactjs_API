@@ -5,7 +5,7 @@ import "./DetailSpecialty.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
-import { getExtraInforDoctorById } from "../../../services/userService";
+import ProfileDoctor from "../Doctor/ProfileDoctor";
 
 class DetailSpecialty extends Component {
   constructor(props) {
@@ -15,14 +15,7 @@ class DetailSpecialty extends Component {
     };
   }
 
-  async componentDidMount() {
-    let res = await getExtraInforDoctorById(this.props.doctorIdFromParent);
-    if (res && res.errCode === 0) {
-      this.setState({
-        extraInfor: res.data,
-      });
-    }
-  }
+  async componentDidMount() {}
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
@@ -34,24 +27,34 @@ class DetailSpecialty extends Component {
     return (
       <div className="detail-specialty-container">
         <HomeHeader />
-        <div className="specialty-description">Details Specialty</div>;
-        {arrDoctorId &&
-          arrDoctorId.length > 0 &&
-          arrDoctorId.map((item, index) => {
-            return (
-              <div className="each-doctor" key={index}>
-                <div className="content-left"></div>
-                <div className="content-right">
-                  <div className="doctor-schedule">
-                    <DoctorSchedule doctorIdFromParent={item} />
+        <div className="detail-specialty-body">
+          <div className="specialty-description">Details Specialty</div>;
+          {arrDoctorId &&
+            arrDoctorId.length > 0 &&
+            arrDoctorId.map((item, index) => {
+              return (
+                <div className="each-doctor" key={index}>
+                  <div className="detail-content-left">
+                    <div className="profile-doctor">
+                      <ProfileDoctor
+                        doctorId={item}
+                        isShowDescriptionDoctor={true}
+                        // scheduleData={scheduleData}
+                      />
+                    </div>
                   </div>
-                  <div className="doctor-extra-infor">
-                    <DoctorExtraInfor doctorIdFromParent={item} />
+                  <div className="detail-content-right">
+                    <div className="doctor-schedule">
+                      <DoctorSchedule doctorIdFromParent={item} />
+                    </div>
+                    <div className="doctor-extra-infor">
+                      <DoctorExtraInfor doctorIdFromParent={item} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     );
   }
