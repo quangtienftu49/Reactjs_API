@@ -231,7 +231,8 @@ class ManageDoctors extends Component {
 
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
-    let { listPayments, listPrice, listProvinces } = this.state;
+    let { listPayments, listPrice, listProvinces, listSpecialties } =
+      this.state;
 
     let res = await getDetailInforDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
@@ -242,10 +243,12 @@ class ManageDoctors extends Component {
         note = "",
         paymentId = "",
         priceId = "",
+        specialtyId = "",
         provinceId = "",
         selectedPayment = "",
         selectedPrice = "",
-        selectedProvince = "";
+        selectedProvince = "",
+        selectedSpecialty = "";
 
       if (res.data.Doctor_infor) {
         addressClinic = res.data.Doctor_infor.addressClinic;
@@ -254,6 +257,7 @@ class ManageDoctors extends Component {
         paymentId = res.data.Doctor_infor.paymentId;
         priceId = res.data.Doctor_infor.priceId;
         provinceId = res.data.Doctor_infor.provinceId;
+        specialtyId = res.data.Doctor_infor.specialtyId;
 
         selectedPayment = listPayments.find((item) => {
           return item && item.value === paymentId;
@@ -263,6 +267,9 @@ class ManageDoctors extends Component {
         });
         selectedProvince = listProvinces.find((item) => {
           return item && item.value === provinceId;
+        });
+        selectedSpecialty = listSpecialties.find((item) => {
+          return item && item.value === specialtyId;
         });
       }
 
@@ -277,6 +284,7 @@ class ManageDoctors extends Component {
         selectedPayment: selectedPayment,
         selectedPrice: selectedPrice,
         selectedProvince: selectedProvince,
+        selectedSpecialty: selectedSpecialty,
       });
     } else {
       this.setState({
@@ -287,6 +295,10 @@ class ManageDoctors extends Component {
         addressClinic: "",
         nameClinic: "",
         note: "",
+        selectedPayment: "",
+        selectedPrice: "",
+        selectedProvince: "",
+        selectedSpecialty: "",
       });
     }
     // console.log(`check handleChangeSelect:`, res);
