@@ -7,6 +7,7 @@ import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import { getAllDetailSpecialtyById } from "../../../services/userService";
+import _ from "lodash";
 
 class DetailSpecialty extends Component {
   constructor(props) {
@@ -52,7 +53,16 @@ class DetailSpecialty extends Component {
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="detail-specialty-body">
-          <div className="specialty-description">Details Specialty</div>;
+          <div className="specialty-description">
+            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: dataDetailSpecialty.descriptionHTML,
+                }}
+              ></div>
+            )}
+          </div>
+          ;
           {arrDoctorId &&
             arrDoctorId.length > 0 &&
             arrDoctorId.map((item, index) => {
