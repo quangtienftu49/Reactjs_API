@@ -13,7 +13,7 @@ class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrDoctorId: [52, 53, 54, 55],
+      arrDoctorId: [],
       dataDetailSpecialty: {},
     };
   }
@@ -32,8 +32,19 @@ class DetailSpecialty extends Component {
       });
 
       if (res && res.errCode === 0) {
+        let data = res.data;
+        let arrDoctorId = [];
+        if (data && !_.isEmpty(data)) {
+          let arr = data.Doctor_infors;
+          if (arr && arr.length > 0) {
+            arr.map((item) => {
+              arrDoctorId.push(item.doctorId);
+            });
+          }
+        }
         this.setState({
           dataDetailSpecialty: res.data,
+          arrDoctorId: arrDoctorId,
         });
       }
       // console.log("check id response", res);
