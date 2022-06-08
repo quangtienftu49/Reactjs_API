@@ -176,7 +176,7 @@ class BookingModal extends Component {
       doctorId = scheduleData.doctorId;
     }
 
-    console.log("check scheduleData", scheduleData);
+    // console.log("check scheduleData", scheduleData);
 
     // same code functioning like if above
     // let doctorId = scheduleData && !_.isEmpty(scheduleData) ? scheduleData.doctorId : '';
