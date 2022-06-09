@@ -1,9 +1,19 @@
 .detail-specialty-container {
   .detail-specialty-body {
-    margin: 0 100px;
+    padding: 0 100px;
+    background: #eee;
+    display: flex;
+    flex-direction: column;
 
     .specialty-description {
-      border: 1px solid red;
+      padding: 10px;
+      background-color: white !important;
+      margin: 15px 0;
+
+      h1, h2, h3 {
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
 
     .search-doctor-specialty{}
