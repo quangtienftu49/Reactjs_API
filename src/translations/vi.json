@@ -99,7 +99,8 @@
             "confirm": "Xác nhận",
             "cancel": "Hủy",
             "signUpFree": "Miễn phí đặt lịch",
-            "price": "Giá khám: "
+            "price": "Giá khám: ",
+            "detail": "Xem thêm"
         }
     },
     "admin": {

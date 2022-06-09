@@ -99,7 +99,8 @@
             "confirm": "Confirm",
             "cancel": "Cancel",
             "signUpFree": "Book for free",
-            "price": "Price: "
+            "price": "Price: ",
+            "detail": "Details"
         }
     },
     "admin": {

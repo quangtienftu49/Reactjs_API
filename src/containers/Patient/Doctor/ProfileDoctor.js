@@ -7,6 +7,7 @@ import { getProfileDoctorById } from "../../../services/userService";
 import NumberFormat from "react-number-format";
 import _, { times } from "lodash";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 class ProfileDoctor extends Component {
   constructor(props) {
@@ -83,7 +84,15 @@ class ProfileDoctor extends Component {
     let { dataProfile } = this.state;
     let nameVi = "";
     let nameEn = "";
-    let { language, isShowDescriptionDoctor, scheduleData } = this.props;
+
+    let {
+      language,
+      isShowDescriptionDoctor,
+      scheduleData,
+      isShowLinkDetail,
+      isShowPrice,
+      doctorId,
+    } = this.props;
     if (dataProfile && dataProfile.positionData) {
       nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.firstName} ${dataProfile.lastName}`;
       nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`;
@@ -117,31 +126,45 @@ class ProfileDoctor extends Component {
             </div>
           </div>
         </div>
-        <div className="price">
-          <FormattedMessage id="patient.booking-modal.price" />
-          {dataProfile &&
-            dataProfile.Doctor_infor &&
-            language === LANGUAGES.VI && (
-              <NumberFormat
-                className="currency"
-                value={dataProfile.Doctor_infor.priceTypeData.valueVi}
-                displayType={"text"}
-                thousandSeparator={true}
-                suffix={"VND"}
-              />
-            )}
-          {dataProfile &&
-            dataProfile.Doctor_infor &&
-            language === LANGUAGES.EN && (
-              <NumberFormat
-                className="currency"
-                value={dataProfile.Doctor_infor.priceTypeData.valueEn}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
-              />
-            )}
-        </div>
+        {isShowLinkDetail === true && (
+          <div className="view-detail-doctor">
+            {/* Using Link (library) then page not loading again */}
+            <Link to={`/detail-doctor/${doctorId}`}>
+              <FormattedMessage id="patient.booking-modal.detail" />
+            </Link>
+            {/* Using HTML the page will load again */}
+            {/* <a href={`/detail-doctor/${doctorId}`}>
+              <FormattedMessage id="patient.booking-modal.detail" />
+            </a> */}
+          </div>
+        )}
+        {isShowPrice && (
+          <div className="price">
+            <FormattedMessage id="patient.booking-modal.price" />
+            {dataProfile &&
+              dataProfile.Doctor_infor &&
+              language === LANGUAGES.VI && (
+                <NumberFormat
+                  className="currency"
+                  value={dataProfile.Doctor_infor.priceTypeData.valueVi}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  suffix={"VND"}
+                />
+              )}
+            {dataProfile &&
+              dataProfile.Doctor_infor &&
+              language === LANGUAGES.EN && (
+                <NumberFormat
+                  className="currency"
+                  value={dataProfile.Doctor_infor.priceTypeData.valueEn}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
+              )}
+          </div>
+        )}
       </div>
     );
   }

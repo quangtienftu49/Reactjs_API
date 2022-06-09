@@ -159,6 +159,8 @@ class DetailSpecialty extends Component {
                       <ProfileDoctor
                         doctorId={item}
                         isShowDescriptionDoctor={true}
+                        isShowLinkDetail={true}
+                        isShowPrice={false}
                         // scheduleData={scheduleData}
                       />
                     </div>
