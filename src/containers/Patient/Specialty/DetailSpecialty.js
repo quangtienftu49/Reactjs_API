@@ -84,8 +84,38 @@ class DetailSpecialty extends Component {
     }
   }
 
-  handleOnChangeSelect = (e) => {
-    console.log("check onChange", e.target.value);
+  handleOnChangeSelect = async (e) => {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      let location = e.target.value;
+
+      let res = await getAllDetailSpecialtyById({
+        id: id,
+        location: location,
+      });
+
+      if (res && res.errCode === 0) {
+        let data = res.data;
+        let arrDoctorId = [];
+        if (data && !_.isEmpty(data)) {
+          let arr = data.Doctor_infors;
+          if (arr && arr.length > 0) {
+            arr.map((item) => {
+              arrDoctorId.push(item.doctorId);
+            });
+          }
+        }
+
+        this.setState({
+          dataDetailSpecialty: res.data,
+          arrDoctorId: arrDoctorId,
+        });
+      }
+    }
   };
 
   render() {
