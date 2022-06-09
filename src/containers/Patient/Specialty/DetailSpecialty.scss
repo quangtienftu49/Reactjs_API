@@ -16,7 +16,17 @@
       }
     }
 
-    .search-doctor-specialty{}
+    .search-doctor-specialty{
+      select {
+        height: 30px;
+        padding: 5px 8px;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        // font-weight: 600;
+        cursor: pointer;
+      }
+    }
 
     .each-doctor {
       display: flex;
