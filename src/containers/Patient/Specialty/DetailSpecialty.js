@@ -54,10 +54,25 @@ class DetailSpecialty extends Component {
             });
           }
         }
+
+        let dataProvince = resProvince.data;
+
+        if (dataProvince && dataProvince.length > 0) {
+          // unshift to add new items to the first place of array
+          // push to add new items to the end of array
+          dataProvince.unshift({
+            createdAt: null,
+            keyMap: "ALL",
+            type: "PROVINCE",
+            valueEn: "Nationwide",
+            valueVi: "Toàn quốc",
+          });
+        }
+
         this.setState({
           dataDetailSpecialty: res.data,
           arrDoctorId: arrDoctorId,
-          listProvince: resProvince.data,
+          listProvince: dataProvince ? dataProvince : [],
         });
       }
       // console.log("check id response", res);
