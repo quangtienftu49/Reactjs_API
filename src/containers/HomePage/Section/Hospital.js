@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import { getAllClinics } from "../../../services/userService";
+import { withRouter } from "react-router";
 
 class Hospital extends Component {
   constructor(props) {
@@ -75,4 +76,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hospital);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Hospital)
+);
