@@ -74,6 +74,13 @@
         "specialty-image": "Ảnh chuyên khoa",
         "save": "Lưu"
     },
+    "manage-clinic":{
+        "manage-clinic":"Quản lý phòng khám",
+        "clinic-title": "Phòng khám",
+        "clinic-image": "Ảnh phòng khám",
+        "save": "Lưu",
+        "clinic-address": "Địa chỉ phòng khám"
+    },
     "patient": {
         "detail-doctor":{
             "schedule":"Lịch khám",

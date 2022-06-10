@@ -74,6 +74,13 @@
         "specialty-image": "Image of specialty",
         "save": "Save"
     },
+    "manage-clinic":{
+        "manage-clinic":"Manage clinics",
+        "clinic-title": "Clinic",
+        "clinic-image": "Image of clinic",
+        "save": "Save",
+        "clinic-address":"Clinic address"
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Schedule",
