@@ -5,7 +5,7 @@ import "./ManageClinic.scss";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
-import { createNewSpecialty } from "../../../services/userService";
+import { createNewClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -59,19 +59,20 @@ class ManageClinic extends Component {
   };
 
   handleSaveNewClinic = async () => {
-    // let res = await createNewSpecialty(this.state);
-    // if (res && res.errCode === 0) {
-    //   toast.success("Saved a new clinic successfully!");
-    //   this.setState({
-    //     name: "",
-    //     imageBase64: "",
-    //     descriptionHTML: "",
-    //     descriptionMarkdown: "",
-    //   });
-    // } else {
-    //   toast.error("Failed to save a new clinic!");
-    //   // console.log("check res", res);
-    // }
+    let res = await createNewClinic(this.state);
+    if (res && res.errCode === 0) {
+      toast.success("Saved a new clinic successfully!");
+      this.setState({
+        name: "",
+        address: "",
+        imageBase64: "",
+        descriptionHTML: "",
+        descriptionMarkdown: "",
+      });
+    } else {
+      toast.error("Failed to save a new clinic!");
+      // console.log("check res", res);
+    }
   };
 
   render() {
