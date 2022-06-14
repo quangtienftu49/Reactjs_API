@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
+import { getAllPatientListForDoctor } from "../../../services/userService";
 
 class ManagePatient extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class ManagePatient extends Component {
   };
 
   render() {
+    console.log("check props", this.props);
     return (
       <div className="manage-patient-container">
         <div className="manage-patient-title">Quản lý bệnh nhân</div>
@@ -40,15 +42,17 @@ class ManagePatient extends Component {
           </div>
           <div className="col-12 manage-patient-table">
             <table style={{ width: "100%" }}>
-              <tr>
-                <th>Company</th>
-                <th>Contact</th>
-              </tr>
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                </tr>
+                <tr>
+                  <td>Alfreds Futterkiste</td>
+                  <td>Maria Anders</td>
+                  <td>Germany</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -60,6 +64,7 @@ class ManagePatient extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    user: state.user.userInfo,
   };
 };
 
