@@ -13,7 +13,19 @@ class ManagePatient extends Component {
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    let { user } = this.props;
+    let { currentDate } = this.state;
+
+    let formattedDate = new Date(currentDate).getTime();
+
+    let res = await getAllPatientListForDoctor({
+      doctorId: user.id,
+      date: formattedDate,
+    });
+
+    console.log("check res", res);
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
