@@ -11,22 +11,30 @@ class ManagePatient extends Component {
     super(props);
     this.state = {
       currentDate: moment(new Date()).startOf("day").valueOf(),
+      dataPatient: {},
     };
   }
 
   async componentDidMount() {
     let { user } = this.props;
     let { currentDate } = this.state;
-
     let formattedDate = new Date(currentDate).getTime();
 
+    this.getDataPatient(user, formattedDate);
+  }
+
+  getDataPatient = async (user, formattedDate) => {
     let res = await getAllPatientListForDoctor({
       doctorId: user.id,
       date: formattedDate,
     });
 
-    console.log("check res", res);
-  }
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataPatient: res.data,
+      });
+    }
+  };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
@@ -34,13 +42,22 @@ class ManagePatient extends Component {
   }
 
   handleOnChangeDatePicker = (date) => {
-    this.setState({
-      currentDate: date[0],
-    });
+    this.setState(
+      {
+        currentDate: date[0],
+      },
+      () => {
+        let { user } = this.props;
+        let { currentDate } = this.state;
+        let formattedDate = new Date(currentDate).getTime();
+
+        this.getDataPatient(user, formattedDate);
+      }
+    );
   };
 
   render() {
-    // console.log("check state", this.state);
+    console.log("check state", this.state);
     return (
       <div className="manage-patient-container">
         <div className="manage-patient-title">Quản lý bệnh nhân</div>

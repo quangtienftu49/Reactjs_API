@@ -96,7 +96,7 @@ const getAllDetailClinicById = (data) => {
 
 const getAllPatientListForDoctor = (data) => {
   return axios.get(
-    `/api/get-patient-list-for-doctor?doctorId=${data.doctorId}&date=${data.date}}`
+    `/api/get-patient-list-for-doctor?doctorId=${data.doctorId}&date=${data.date}`
   );
 };
 
