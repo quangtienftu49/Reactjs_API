@@ -4,12 +4,13 @@ import { FormattedMessage } from "react-intl";
 import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
 import { getAllPatientListForDoctor } from "../../../services/userService";
+import moment from "moment";
 
 class ManagePatient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDate: new Date(),
+      currentDate: moment(new Date()).startOf("day").valueOf(),
     };
   }
 
@@ -39,7 +40,7 @@ class ManagePatient extends Component {
   };
 
   render() {
-    console.log("check props", this.props);
+    console.log("check state", this.state);
     return (
       <div className="manage-patient-container">
         <div className="manage-patient-title">Quản lý bệnh nhân</div>
