@@ -56,6 +56,10 @@ class ManagePatient extends Component {
     );
   };
 
+  handleBtnConfirm = () => {};
+
+  handleBtnPrescription = () => {};
+
   render() {
     console.log("check state", this.state);
     let { dataPatient } = this.state;
@@ -93,8 +97,18 @@ class ManagePatient extends Component {
                         <td>{item.patientData.address}</td>
                         <td>{item.patientData.genderData.valueEn}</td>
                         <td>
-                          <button>Confirm</button>
-                          <button>Send receipt</button>
+                          <button
+                            className="mp-btn-confirm"
+                            onClick={() => this.handleBtnConfirm()}
+                          >
+                            Confirm
+                          </button>
+                          <button
+                            className="mp-btn-prescription"
+                            onClick={() => this.handleBtnPrescription()}
+                          >
+                            Send prescription
+                          </button>
                         </td>
                       </tr>
                     );
