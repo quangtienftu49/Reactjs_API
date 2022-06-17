@@ -5,6 +5,8 @@ import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
 import { getAllPatientListForDoctor } from "../../../services/userService";
 import moment from "moment";
+import { lang } from "moment";
+import { LANGUAGES } from "../../../utils";
 
 class ManagePatient extends Component {
   constructor(props) {
@@ -56,13 +58,20 @@ class ManagePatient extends Component {
     );
   };
 
-  handleBtnConfirm = () => {};
+  handleBtnConfirm = (item) => {
+    let data = {
+      doctorId: item.doctorId,
+      patientId: item.patientId,
+      email: item.patientData.email,
+    };
 
-  handleBtnPrescription = () => {};
+    console.log("check data", data);
+  };
 
   render() {
     console.log("check state", this.state);
     let { dataPatient } = this.state;
+    let { language } = this.props;
     return (
       <div className="manage-patient-container">
         <div className="manage-patient-title">Quản lý bệnh nhân</div>
@@ -89,25 +98,28 @@ class ManagePatient extends Component {
 
                 {dataPatient && dataPatient.length > 0 ? (
                   dataPatient.map((item, index) => {
+                    let time =
+                      language === LANGUAGES.VI
+                        ? item.timeTypeDataPatient.valueVi
+                        : item.timeTypeDataPatient.valueEn;
+
+                    let gender =
+                      language === LANGUAGES.VI
+                        ? item.patientData.genderData.valueVi
+                        : item.patientData.genderData.valueEn;
                     return (
                       <tr key={index}>
                         <td>{index + 1}</td>
-                        <td>{item.timeTypeDataPatient.valueEn}</td>
+                        <td>{time}</td>
                         <td>{item.patientData.firstName}</td>
                         <td>{item.patientData.address}</td>
-                        <td>{item.patientData.genderData.valueEn}</td>
+                        <td>{gender}</td>
                         <td>
                           <button
                             className="mp-btn-confirm"
-                            onClick={() => this.handleBtnConfirm()}
+                            onClick={() => this.handleBtnConfirm(item)}
                           >
                             Confirm
-                          </button>
-                          <button
-                            className="mp-btn-prescription"
-                            onClick={() => this.handleBtnPrescription()}
-                          >
-                            Send prescription
                           </button>
                         </td>
                       </tr>
