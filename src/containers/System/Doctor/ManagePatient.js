@@ -78,7 +78,7 @@ class ManagePatient extends Component {
 
   render() {
     console.log("check state", this.state);
-    let { dataPatient } = this.state;
+    let { dataPatient, isOpenPrescriptionModal, dataModal } = this.state;
     let { language } = this.props;
     return (
       <>
@@ -142,7 +142,10 @@ class ManagePatient extends Component {
             </div>
           </div>
         </div>
-        <PrescriptionModal />
+        <PrescriptionModal
+          isOpenModal={isOpenPrescriptionModal}
+          dataModal={dataModal}
+        />
       </>
     );
   }
