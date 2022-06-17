@@ -15,7 +15,8 @@ class PrescriptionModal extends Component {
   async componentDidMount() {}
 
   render() {
-    let { isOpenModal, closePrescriptionModal, dataModal } = this.props;
+    let { isOpenModal, closePrescriptionModal, dataModal, sendPrescription } =
+      this.props;
 
     return (
       <Modal
@@ -26,7 +27,12 @@ class PrescriptionModal extends Component {
       >
         <div className="modal-header">
           <h5 className="modal-title">Gửi hóa đơn khám bệnh</h5>
-          <button type="button" className="close" aria-label="close">
+          <button
+            type="button"
+            className="close"
+            aria-label="close"
+            onClick={closePrescriptionModal}
+          >
             <span aria-hidden="true">x</span>
           </button>
         </div>
@@ -47,7 +53,7 @@ class PrescriptionModal extends Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={closePrescriptionModal}>
+          <Button color="primary" onClick={sendPrescription}>
             Send
           </Button>
           <Button color="secondary" onClick={closePrescriptionModal}>
