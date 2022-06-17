@@ -72,8 +72,6 @@ class ManagePatient extends Component {
       isOpenPrescriptionModal: true,
       dataModal: data,
     });
-
-    console.log("check data", data);
   };
 
   closePrescriptionModal = () => {
@@ -83,12 +81,11 @@ class ManagePatient extends Component {
     });
   };
 
-  sendPrescription = () => {
-    alert("click me");
+  sendPrescription = (dataFromChild) => {
+    console.log("check data from child", dataFromChild);
   };
 
   render() {
-    console.log("check state", this.state);
     let { dataPatient, isOpenPrescriptionModal, dataModal } = this.state;
     let { language } = this.props;
     return (

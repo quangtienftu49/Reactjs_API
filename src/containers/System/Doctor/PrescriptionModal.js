@@ -5,14 +5,58 @@ import "./PrescriptionModal.scss";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import { toast } from "react-toastify";
 import moment from "moment";
+import { CommonUtils } from "../../../utils";
 
 class PrescriptionModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      imgBase64: "",
+    };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (this.props.dataModal) {
+      this.setState({
+        email: this.props.dataModal.email,
+      });
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.language !== prevProps.language) {
+    }
+
+    if (prevProps.dataModal !== this.props.dataModal) {
+      this.setState({
+        email: this.props.dataModal.email,
+      });
+    }
+  }
+
+  handleOnChangeEmail = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  handleOnChangeImage = async (e) => {
+    let data = e.target.files;
+    let file = data[0];
+    //create URL to preview image
+    if (file) {
+      //convert file image to base64
+      let base64 = await CommonUtils.getBase64(file);
+      this.setState({
+        imgBase64: base64,
+      });
+    }
+  };
+
+  handleSendPrescription = () => {
+    this.props.sendPrescription(this.state);
+  };
 
   render() {
     let { isOpenModal, closePrescriptionModal, dataModal, sendPrescription } =
@@ -43,17 +87,22 @@ class PrescriptionModal extends Component {
               <input
                 className="form-control"
                 type="email"
-                value={dataModal.email}
+                value={this.state.email}
+                onChange={(e) => this.handleOnChangeEmail(e)}
               />
             </div>
             <div className="col-6 form-group">
               <label>Chọn file đơn thuốc</label>
-              <input className="form-control-file" type="file" />
+              <input
+                className="form-control-file"
+                type="file"
+                onChange={(e) => this.handleOnChangeImage(e)}
+              />
             </div>
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={sendPrescription}>
+          <Button color="primary" onClick={() => this.handleSendPrescription()}>
             Send
           </Button>
           <Button color="secondary" onClick={closePrescriptionModal}>
