@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
-import { getAllPatientListForDoctor } from "../../../services/userService";
+import {
+  getAllPatientListForDoctor,
+  postSendPrescription,
+} from "../../../services/userService";
 import moment from "moment";
 import { lang } from "moment";
 import { LANGUAGES } from "../../../utils";
 import PrescriptionModal from "./PrescriptionModal";
+import { toast } from "react-toastify";
 
 class ManagePatient extends Component {
   constructor(props) {
@@ -66,6 +70,7 @@ class ManagePatient extends Component {
       doctorId: item.doctorId,
       patientId: item.patientId,
       email: item.patientData.email,
+      timeType: item.timeType,
     };
 
     this.setState({
@@ -81,8 +86,21 @@ class ManagePatient extends Component {
     });
   };
 
-  sendPrescription = (dataFromChild) => {
-    console.log("check data from child", dataFromChild);
+  sendPrescription = async (dataChild) => {
+    let { dataModal } = this.state;
+    let res = await postSendPrescription({
+      email: dataChild.email,
+      imgBase64: dataChild.imgBase64,
+      doctorId: dataModal.doctorId,
+      patientId: dataModal.patientId,
+      timeType: dataModal.timeType,
+    });
+
+    if (res && res.errCode == 0) {
+      toast.success("Send prescription successfully!");
+    } else {
+      toast.error("Failed to send prescription!");
+    }
   };
 
   render() {

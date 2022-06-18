@@ -100,6 +100,10 @@ const getAllPatientListForDoctor = (data) => {
   );
 };
 
+const postSendPrescription = (data) => {
+  return axios.post(`/api/send-prescription`, data);
+};
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -124,4 +128,5 @@ export {
   getAllClinics,
   getAllDetailClinicById,
   getAllPatientListForDoctor,
+  postSendPrescription,
 };
