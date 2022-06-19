@@ -29,10 +29,14 @@ class ManagePatient extends Component {
     let { currentDate } = this.state;
     let formattedDate = new Date(currentDate).getTime();
 
-    this.getDataPatient(user, formattedDate);
+    this.getDataPatient();
   }
 
-  getDataPatient = async (user, formattedDate) => {
+  getDataPatient = async () => {
+    let { user } = this.props;
+    let { currentDate } = this.state;
+    let formattedDate = new Date(currentDate).getTime();
+
     let res = await getAllPatientListForDoctor({
       doctorId: user.id,
       date: formattedDate,
@@ -55,12 +59,8 @@ class ManagePatient extends Component {
       {
         currentDate: date[0],
       },
-      () => {
-        let { user } = this.props;
-        let { currentDate } = this.state;
-        let formattedDate = new Date(currentDate).getTime();
-
-        this.getDataPatient(user, formattedDate);
+      async () => {
+        await this.getDataPatient();
       }
     );
   };
@@ -98,6 +98,9 @@ class ManagePatient extends Component {
 
     if (res && res.errCode == 0) {
       toast.success("Send prescription successfully!");
+
+      this.closePrescriptionModal();
+      await this.getDataPatient();
     } else {
       toast.error("Failed to send prescription!");
     }
@@ -161,7 +164,11 @@ class ManagePatient extends Component {
                       );
                     })
                   ) : (
-                    <tr>No data</tr>
+                    <tr>
+                      <td colSpan={"6"} style={{ textAlign: "center" }}>
+                        No data
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>
