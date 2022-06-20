@@ -71,6 +71,7 @@ class ManagePatient extends Component {
       patientId: item.patientId,
       email: item.patientData.email,
       timeType: item.timeType,
+      patientName: item.patientData.firstName,
     };
 
     this.setState({
@@ -94,6 +95,8 @@ class ManagePatient extends Component {
       doctorId: dataModal.doctorId,
       patientId: dataModal.patientId,
       timeType: dataModal.timeType,
+      language: this.props.language,
+      patientName: dataModal.patientName,
     });
 
     if (res && res.errCode == 0) {
