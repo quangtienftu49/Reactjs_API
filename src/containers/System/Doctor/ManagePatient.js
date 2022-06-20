@@ -22,7 +22,7 @@ class ManagePatient extends Component {
       dataPatient: [],
       isOpenPrescriptionModal: false,
       dataModal: {},
-      isShowLoading: true,
+      isShowLoading: false,
     };
   }
 
@@ -91,6 +91,10 @@ class ManagePatient extends Component {
 
   sendPrescription = async (dataChild) => {
     let { dataModal } = this.state;
+    this.setState({
+      isShowLoading: true,
+    });
+
     let res = await postSendPrescription({
       email: dataChild.email,
       imgBase64: dataChild.imgBase64,
@@ -102,11 +106,17 @@ class ManagePatient extends Component {
     });
 
     if (res && res.errCode == 0) {
+      this.setState({
+        isShowLoading: false,
+      });
       toast.success("Send prescription successfully!");
 
       this.closePrescriptionModal();
       await this.getDataPatient();
     } else {
+      this.setState({
+        isShowLoading: false,
+      });
       toast.error("Failed to send prescription!");
     }
   };
@@ -119,7 +129,7 @@ class ManagePatient extends Component {
         <LoadingOverlay
           active={this.state.isShowLoading}
           spinner
-          text="Loading your content..."
+          text="Loading..."
         >
           <div className="manage-patient-container">
             <div className="manage-patient-title">Quản lý bệnh nhân</div>
