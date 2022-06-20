@@ -12,6 +12,7 @@ import { lang } from "moment";
 import { LANGUAGES } from "../../../utils";
 import PrescriptionModal from "./PrescriptionModal";
 import { toast } from "react-toastify";
+import LoadingOverlay from "react-loading-overlay";
 
 class ManagePatient extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class ManagePatient extends Component {
       dataPatient: [],
       isOpenPrescriptionModal: false,
       dataModal: {},
+      isShowLoading: true,
     };
   }
 
@@ -114,76 +116,82 @@ class ManagePatient extends Component {
     let { language } = this.props;
     return (
       <>
-        <div className="manage-patient-container">
-          <div className="manage-patient-title">Quản lý bệnh nhân</div>
-          <div className="manage-patient-body row">
-            <div className="col-4 form-group">
-              <label>Chọn ngày khám</label>
-              <DatePicker
-                onChange={this.handleOnChangeDatePicker}
-                className="form-control"
-                value={this.state.currentDate}
-              />
-            </div>
-            <div className="col-12 manage-patient-table">
-              <table style={{ width: "100%" }}>
-                <tbody>
-                  <tr>
-                    <th>No.</th>
-                    <th>Time</th>
-                    <th>Full name</th>
-                    <th>Address</th>
-                    <th>Sex</th>
-                    <th>Actions</th>
-                  </tr>
-
-                  {dataPatient && dataPatient.length > 0 ? (
-                    dataPatient.map((item, index) => {
-                      let time =
-                        language === LANGUAGES.VI
-                          ? item.timeTypeDataPatient.valueVi
-                          : item.timeTypeDataPatient.valueEn;
-
-                      let gender =
-                        language === LANGUAGES.VI
-                          ? item.patientData.genderData.valueVi
-                          : item.patientData.genderData.valueEn;
-                      return (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{time}</td>
-                          <td>{item.patientData.firstName}</td>
-                          <td>{item.patientData.address}</td>
-                          <td>{gender}</td>
-                          <td>
-                            <button
-                              className="mp-btn-confirm"
-                              onClick={() => this.handleBtnConfirm(item)}
-                            >
-                              Confirm
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
+        <LoadingOverlay
+          active={this.state.isShowLoading}
+          spinner
+          text="Loading your content..."
+        >
+          <div className="manage-patient-container">
+            <div className="manage-patient-title">Quản lý bệnh nhân</div>
+            <div className="manage-patient-body row">
+              <div className="col-4 form-group">
+                <label>Chọn ngày khám</label>
+                <DatePicker
+                  onChange={this.handleOnChangeDatePicker}
+                  className="form-control"
+                  value={this.state.currentDate}
+                />
+              </div>
+              <div className="col-12 manage-patient-table">
+                <table style={{ width: "100%" }}>
+                  <tbody>
                     <tr>
-                      <td colSpan={"6"} style={{ textAlign: "center" }}>
-                        No data
-                      </td>
+                      <th>No.</th>
+                      <th>Time</th>
+                      <th>Full name</th>
+                      <th>Address</th>
+                      <th>Sex</th>
+                      <th>Actions</th>
                     </tr>
-                  )}
-                </tbody>
-              </table>
+
+                    {dataPatient && dataPatient.length > 0 ? (
+                      dataPatient.map((item, index) => {
+                        let time =
+                          language === LANGUAGES.VI
+                            ? item.timeTypeDataPatient.valueVi
+                            : item.timeTypeDataPatient.valueEn;
+
+                        let gender =
+                          language === LANGUAGES.VI
+                            ? item.patientData.genderData.valueVi
+                            : item.patientData.genderData.valueEn;
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{time}</td>
+                            <td>{item.patientData.firstName}</td>
+                            <td>{item.patientData.address}</td>
+                            <td>{gender}</td>
+                            <td>
+                              <button
+                                className="mp-btn-confirm"
+                                onClick={() => this.handleBtnConfirm(item)}
+                              >
+                                Confirm
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td colSpan={"6"} style={{ textAlign: "center" }}>
+                          No data
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-        <PrescriptionModal
-          isOpenModal={isOpenPrescriptionModal}
-          dataModal={dataModal}
-          closePrescriptionModal={this.closePrescriptionModal}
-          sendPrescription={this.sendPrescription}
-        />
+          <PrescriptionModal
+            isOpenModal={isOpenPrescriptionModal}
+            dataModal={dataModal}
+            closePrescriptionModal={this.closePrescriptionModal}
+            sendPrescription={this.sendPrescription}
+          />
+        </LoadingOverlay>
       </>
     );
   }
