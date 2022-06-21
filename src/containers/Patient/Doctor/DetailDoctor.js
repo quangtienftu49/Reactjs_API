@@ -53,6 +53,11 @@ class DetailDoctor extends Component {
       nameEn = `${detailDoctor.positionData.valueEn} ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
 
+    let currentURL =
+      process.env.REACT_APP_IS_LOCALHOST === true
+        ? "https://www.linkedin.com/in/tienmax"
+        : window.location.href;
+
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -72,6 +77,9 @@ class DetailDoctor extends Component {
                 {detailDoctor.Markdown && detailDoctor.Markdown.description && (
                   <span>{detailDoctor.Markdown.description}</span>
                 )}
+              </div>
+              <div className="like-share-plugin">
+                <LikeAndShare dataHref={currentURL} />
               </div>
             </div>
           </div>
@@ -97,7 +105,9 @@ class DetailDoctor extends Component {
                 ></div>
               )}
           </div>
-          <div className="comment-doctor"></div>
+          <div className="comment-doctor">
+            <Comment dataHref={currentURL} width={"100%"} />
+          </div>
         </div>
       </>
     );
