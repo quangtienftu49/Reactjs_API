@@ -48,17 +48,14 @@ class Comment extends Component {
   }
 
   render() {
-    let { dataHref } = this.props;
+    let { dataHref, width, numPost } = this.props;
     return (
       <>
         <div
-          class="fb-like"
+          class="fb-comments"
           data-href={dataHref}
-          data-width=""
-          data-layout="standard"
-          data-action="like"
-          data-size="small"
-          data-share="true"
+          data-width={width ? width : ""}
+          data-numposts={numPost ? numPost : ""}
         ></div>
       </>
     );
