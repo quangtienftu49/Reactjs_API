@@ -54,7 +54,7 @@ class DetailDoctor extends Component {
     }
 
     let currentURL =
-      process.env.REACT_APP_IS_LOCALHOST === true
+      +process.env.REACT_APP_IS_LOCALHOST === 1
         ? "https://www.linkedin.com/in/tienmax"
         : window.location.href;
 
