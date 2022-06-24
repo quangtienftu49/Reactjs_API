@@ -61,7 +61,9 @@
     "homepage": {
         "outstanding-doctor": "Bác sỹ nổi bật",
         "see-more": "Xem thêm",
-        "popular-specialty": "Chuyên khoa phổ biến"
+        "popular-specialty": "Chuyên khoa phổ biến",
+        "popular-clinic": "Cơ sở y tế nổi tiếng",
+        "handbook":"Cẩm nang"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sỹ",
@@ -81,6 +83,7 @@
         "clinic-image": "Ảnh phòng khám",
         "save": "Lưu",
         "clinic-address": "Địa chỉ phòng khám"
+        
     },
     "patient": {
         "detail-doctor":{

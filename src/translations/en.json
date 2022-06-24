@@ -59,9 +59,11 @@
         "edit": "Save changes"
     },
     "homepage": {
-        "outstanding-doctor": "Outstanding doctors",
+        "outstanding-doctor": "Outstanding Doctors",
         "see-more": "See more",
-        "popular-specialty": "Popular Specialties"
+        "popular-specialty": "Popular Specialties",
+        "popular-clinic": "Popular Clinics",
+        "handbook":"Handbook"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination schedule",
@@ -80,7 +82,8 @@
         "clinic-title": "Clinic",
         "clinic-image": "Image of clinic",
         "save": "Save",
-        "clinic-address":"Clinic address"
+        "clinic-address":"Clinic address",
+        "see-more": "See more"
     },
     "patient": {
         "detail-doctor": {
