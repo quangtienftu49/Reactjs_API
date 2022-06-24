@@ -91,7 +91,7 @@ const getAllClinics = (doctorId) => {
 };
 
 const getAllDetailClinicById = (data) => {
-  return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}}`);
+  return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
 };
 
 const getAllPatientListForDoctor = (data) => {
